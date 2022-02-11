@@ -13,6 +13,7 @@ const Section_1 = () => {
             </p>
           </div>
           <div className="img-video-wrapper">
+            <div className="tv-img"></div>
             <video autoPlay playsInline muted loop>
               <source
                 src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v"

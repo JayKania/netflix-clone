@@ -25,19 +25,24 @@
     }
     .img-video-wrapper {
       position: relative;
-      background: url("https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png")
-        no-repeat;
       width: 485px;
       height: 360px;
-      background-size: 480px 360px;
-      z-index: 10;
+      .tv-img {
+        position: absolute;
+        background: url("https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png")
+          no-repeat;
+        width: 485px;
+        height: 360px;
+        background-size: 480px 360px;
+        z-index: 2;
+      }
       video {
         position: absolute;
         top: 20%;
         left: 12.7%;
         width: 351px;
         height: 202px;
-        // z-index: 5;
+        z-index: 1;
         background: transparent;
       }
     }
@@ -48,7 +53,12 @@
     .img-video-wrapper {
       width: 250px;
       height: 200px;
-      background-size: 250px 200px;
+      .tv-img {
+        position: absolute;
+        width: 250px;
+        height: 200px;
+        background-size: 250px 200px;
+      }
       video {
         position: absolute;
         top: 21%;
@@ -62,7 +72,6 @@
 
   // mobile
   @media only screen and (max-width: 480px) {
-    // min-height: 58vh;
     .image-desc-wrapper {
       .description {
         flex-basis: 100%;
@@ -74,7 +83,12 @@
       .img-video-wrapper {
         width: 300px;
         height: 237px;
-        background-size: 300px 237px;
+        .tv-img {
+          position: absolute;
+          width: 300px;
+          height: 237px;
+          background-size: 300px 237px;
+        }
         video {
           position: absolute;
           top: 21%;
@@ -91,7 +105,6 @@
   @media only screen and (min-width: 550px) and (max-width: 949px) {
     min-height: 65vh;
     .image-desc-wrapper {
-      //   justify-content: flex-end;
       .description {
         flex-basis: 100%;
         text-align: center;
@@ -103,10 +116,14 @@
         }
       }
       .img-video-wrapper {
-        // flex-basis: 80%;
         width: 550px;
         height: 425px;
-        background-size: 550px 425px;
+        .tv-img {
+          position: absolute;
+          width: 550px;
+          height: 425px;
+          background-size: 550px 425px;
+        }
         video {
           position: absolute;
           top: 18%;
