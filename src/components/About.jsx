@@ -8,7 +8,7 @@ const About = () => {
       <div className="section-1 section">
         <div className="image-desc-wrapper">
           <div className="description">
-            <h2>Enjoy on your TV.</h2>
+            <h1>Enjoy on your TV.</h1>
             <p>
               Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV,
               Blu-ray players and more.

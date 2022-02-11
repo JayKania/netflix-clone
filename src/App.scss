@@ -6,8 +6,20 @@
   box-shadow: inset 30px 70px 50px 500px #000000a6,
     inset -30px -50px 50px 100px #000000a6;
   border-bottom: 10px solid #222222;
-  @media screen and (max-width: 768px) {
-    min-height: 75vh;
+
+  // mobile
+  @media only screen and (max-width: 480px) {
+    min-height: 58vh;
+  }
+
+  // tablet
+  @media only screen and (min-width: 481px) and (max-width: 820px) {
+    min-height: 72vh;
+  }
+
+  // tablet portrait mode
+  @media only screen and (min-width: 550px) and (max-width: 949px) {
+    min-height: 65vh;
   }
 }
 @import url("styles/_nav.scss");

@@ -5,7 +5,7 @@ nav {
   justify-content: space-between;
   margin-left: 3.5rem;
   margin-right: 3.5rem;
-  padding-top: 1.5rem;
+  padding-top: 1.8rem;
 
   img {
     height: 45px;
@@ -41,7 +41,9 @@ nav {
       }
     }
   }
-  @media screen and (max-width: 768px) {
+
+  // mobile
+  @media screen and (max-width: 480px) {
     margin-left: 1rem;
     margin-right: 1rem;
     padding-top: 1.5rem;
@@ -72,4 +74,46 @@ nav {
       }
     }
   }
+
+  // tablet
+  @media screen and (min-width: 481px) and (max-width: 820px) {
+    // min-height: 72vh;
+  }
+
+  // tablet portrait mode
+  @media (min-width: 768px) and (max-width: 1024px) {
+    // min-height: 65vh;
+  }
+
+  // @media screen and (max-width: 768px) {
+  //   margin-left: 1rem;
+  //   margin-right: 1rem;
+  //   padding-top: 1.5rem;
+  //   width: 90%;
+  //   img {
+  //     height: 2rem;
+  //     width: 80px;
+  //   }
+  //   .language-signin {
+  //     display: grid;
+  //     grid-template-columns: auto auto;
+  //     column-gap: 1rem;
+
+  //     .language {
+  //       font-size: 1.2rem;
+  //       padding: 5.5px 15px;
+  //     }
+
+  //     button {
+  //       height: fit-content;
+  //       border: none;
+  //       padding: 7.5px 18px;
+  //       font-size: 1.2rem;
+  //       background: #ee0e19;
+  //       border-radius: 5px;
+  //       color: white;
+  //       margin-right: 0;
+  //     }
+  //   }
+  // }
 }
