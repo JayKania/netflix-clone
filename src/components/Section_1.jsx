@@ -1,8 +1,6 @@
 import React from "react";
-import tv from "../assets/tv.png";
-import tv_video from "../assets/video-tv.m4v";
 
-const About = () => {
+const Section_1 = () => {
   return (
     <>
       <div className="section-1 section">
@@ -15,7 +13,6 @@ const About = () => {
             </p>
           </div>
           <div className="img-video-wrapper">
-            {/* <img src={tv} alt="" /> */}
             <video autoPlay playsInline muted loop>
               <source
                 src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v"
@@ -25,11 +22,8 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="section-2 section"></div>
-      <div className="section-3 section"></div>
-      <div className="section-4 section"></div>
     </>
   );
 };
 
-export default About;
+export default Section_1;

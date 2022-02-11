@@ -2,7 +2,7 @@ import Nav from "./components/Nav";
 import TitleSection from "./components/TitleSection";
 
 import "./App.scss";
-import About from "./components/About";
+import Section1 from "./components/Section_1";
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
         <Nav />
         <TitleSection />
       </div>
-      <About />
+      <Section1 />
     </div>
   );
 };
