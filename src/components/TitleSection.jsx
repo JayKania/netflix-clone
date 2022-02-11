@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/_title.scss";
+
 const TitleSection = () => {
   return (
     <div className="title">

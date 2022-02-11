@@ -3,6 +3,7 @@
   color: white;
   width: 80%;
   margin: 10rem auto 4rem auto;
+
   h1 {
     font-size: 4rem;
   }
@@ -18,19 +19,38 @@
   }
   .input-button-wrapper {
     padding-bottom: 3rem;
-    display: grid;
-    grid-template-columns: 70% 35%;
-    width: 70%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 80%;
     margin: 0 auto;
     input {
       padding: 1.5rem 1rem;
+      flex-basis: 70%;
+      margin-top: 1rem;
     }
     button {
       border: none;
       background: #e50914;
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: white;
       padding: 1rem;
+      margin-top: 1rem;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    .input-button-wrapper {
+      width: 100%;
+      input {
+        flex-basis: 100%;
+      }
+      button {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+      }
     }
   }
 }

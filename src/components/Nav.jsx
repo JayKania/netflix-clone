@@ -1,6 +1,6 @@
 import React from "react";
 import navLogo from "../assets/Netflix-Logo.svg";
-import "../styles/_nav.scss";
+
 const Nav = () => {
   return (
     <nav>

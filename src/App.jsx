@@ -1,6 +1,8 @@
 import Nav from "./components/Nav";
 import TitleSection from "./components/TitleSection";
+
 import "./App.scss";
+import About from "./components/About";
 
 const App = () => {
   return (
@@ -9,6 +11,7 @@ const App = () => {
         <Nav />
         <TitleSection />
       </div>
+      <About />
     </div>
   );
 };

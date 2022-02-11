@@ -2,7 +2,14 @@
   background: url("assets/background-image.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 99.5vh;
   box-shadow: inset 30px 70px 50px 500px #000000a6,
     inset -30px -50px 50px 100px #000000a6;
+  border-bottom: 10px solid #222222;
+  @media screen and (max-width: 768px) {
+    min-height: 75vh;
+  }
 }
+@import url("styles/_nav.scss");
+@import url("styles/_about.scss");
+@import url("styles/_title.scss");
