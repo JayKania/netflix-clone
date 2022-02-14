@@ -3,6 +3,7 @@ import TitleSection from "./components/TitleSection";
 
 import "./App.scss";
 import Section1 from "./components/Section_1";
+import Section2 from "./components/Section_2";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <TitleSection />
       </div>
       <Section1 />
+      <Section2 />
     </div>
   );
 };

@@ -1,0 +1,100 @@
+.section-2 {
+  background: #000000;
+  border-bottom: 10px solid #222222;
+  padding-bottom: 2rem;
+  .image-desc-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    padding: 3rem;
+    .description {
+      flex-basis: 50%;
+      color: white;
+      padding: 3.5rem 0;
+      text-align: left;
+      h1 {
+        font-size: 3rem;
+      }
+      p {
+        padding-top: 1rem;
+        font-size: 1.5rem;
+      }
+    }
+    .img-photo-wrapper {
+      position: relative;
+      .mobile-img {
+        height: 380px;
+        width: 290px;
+        background: url("../assets/mobile_photo.jpg") no-repeat;
+        background-size: 290px 380px;
+      }
+      .download {
+        position: absolute;
+        top: 67%;
+        left: -10%;
+        background-color: #000000;
+        width: 350px;
+        height: 6rem;
+        border: 2px solid rgba(255, 255, 255, 0.25);
+        display: grid;
+        grid-template-columns: 18% 60% 20%;
+        gap: 0.7em;
+        padding: 0.5em 0.75em;
+        border-radius: 0.75em;
+        .download-img {
+          background-image: url("../assets/stranger_things.png");
+          background-size: cover;
+        }
+        .download-title {
+          color: rgb(255, 255, 255);
+          align-self: center;
+          //   display: inline-block;
+          h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+          }
+          p {
+            font-weight: 400;
+            color: #006feb;
+          }
+        }
+        .download-logo {
+          color: rgb(255, 255, 255);
+          align-self: center;
+        }
+      }
+    }
+  }
+
+  // devices like galaxy fold ( not working )
+  @media only screen and( min-width: 280px ) and (max-width: 320px) {
+    .img-video-wrapper {
+    }
+  }
+
+  // mobile
+  @media only screen and (max-width: 480px) {
+    .image-desc-wrapper {
+      .description {
+        flex-basis: 100%;
+        text-align: center;
+      }
+      .mobile-img {
+        height: 350px;
+        width: 260px;
+        background-size: 260px 350px;
+      }
+    }
+  }
+
+  // tablet portrait mode
+  @media only screen and (min-width: 550px) and (max-width: 949px) {
+    min-height: 65vh;
+    .image-desc-wrapper {
+    }
+  }
+}

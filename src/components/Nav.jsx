@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import navLogo from "../assets/Netflix-Logo.svg";
 
 const Nav = () => {
@@ -11,7 +12,9 @@ const Nav = () => {
       </div>
       <div className="language-signin flex-item">
         <span className="language">English</span>
-        <button>Sign In</button>
+        <Link to="/login">
+          <button>Sign In</button>
+        </Link>
       </div>
     </nav>
   );
