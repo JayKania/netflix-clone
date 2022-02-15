@@ -6,6 +6,7 @@ import Section_1 from "./components/Section_1";
 import Section_2 from "./components/Section_2";
 import Section_3 from "./components/Section_3";
 import Section_4 from "./components/Section_4";
+import FaqContainer from "./components/FaqContainer";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <Section_2 />
       <Section_3 />
       <Section_4 />
+      <FaqContainer />
     </div>
   );
 };

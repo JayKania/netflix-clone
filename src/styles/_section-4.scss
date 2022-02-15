@@ -26,16 +26,14 @@
     }
     .img-video-wrapper {
       position: relative;
-      width: 485px;
-      height: 360px;
       .tv-img {
-        position: absolute;
+        // overflow: hidden;
         background: url("https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABVxdX2WnFSp49eXb1do0euaj-F8upNImjofE77XStKhf5kUHG94DPlTiGYqPeYNtiox-82NWEK0Ls3CnLe3WWClGdiJP.png?r=5cf")
           no-repeat;
-        width: 550px;
+        width: 545px;
         height: 425px;
-        background-size: 550px 425px;
-        z-index: 2;
+        background-size: 540px 425px;
+        object-fit: cover;
       }
     }
   }
