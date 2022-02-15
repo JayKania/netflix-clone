@@ -17,7 +17,7 @@ const Section_2 = () => {
               <p>Downloading...</p>
             </div>
             <div className="download-logo">
-              <i class="fal fa-arrow-to-bottom fa-2x"></i>
+              <i className="fal fa-arrow-to-bottom fa-2x"></i>
             </div>
           </div>
         </div>
