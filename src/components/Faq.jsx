@@ -22,7 +22,7 @@ const Faq = ({ ques, ans, id, isOpen, faqs, setFaqs }) => {
           <i className={`fal fa-plus ${isOpen ? "close" : "open"}`}></i>
         </div>
       </div>
-      <div className="ans-wrapper">
+      <div className={`ans-wrapper`}>
         <div className={`ans ${isOpen ? "open" : "close"}`}>
           {ans.map((a) => {
             return <div>{a}</div>;

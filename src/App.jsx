@@ -7,6 +7,8 @@ import Section_2 from "./components/Section_2";
 import Section_3 from "./components/Section_3";
 import Section_4 from "./components/Section_4";
 import FaqContainer from "./components/FaqContainer";
+import Input from "./components/Input";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -20,6 +22,7 @@ const App = () => {
       <Section_3 />
       <Section_4 />
       <FaqContainer />
+      <Footer />
     </div>
   );
 };

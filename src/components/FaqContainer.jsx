@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Faq from "./Faq";
 import { v4 as uuidv4 } from "uuid";
+import Input from "./Input";
 
 const FaqContainer = () => {
   const [faqs, setFaqs] = useState([
@@ -76,6 +77,7 @@ const FaqContainer = () => {
       <div className="faq-container">
         <h1>Frequently Asked Questions</h1>
         {questions}
+        <Input />
       </div>
     </div>
   );
