@@ -11,7 +11,7 @@ const Nav = () => {
         </a>
       </div>
       <div className="language-signin flex-item">
-        <span className="language">English</span>
+        <div className="language">English</div>
         <Link to="/login">
           <button>Sign In</button>
         </Link>

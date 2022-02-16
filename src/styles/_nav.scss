@@ -81,8 +81,29 @@ nav {
   }
 
   // tablet portrait mode
-  @media (min-width: 768px) and (max-width: 1024px) {
+  @media (min-width: 550px) and (max-width: 1024px) {
     // min-height: 65vh;
+    .language-signin {
+      display: grid;
+      grid-template-columns: auto auto;
+      column-gap: 1rem;
+
+      .language {
+        font-size: 1.4rem;
+        padding: 5.5px 15px;
+      }
+
+      button {
+        height: fit-content;
+        border: none;
+        padding: 7.5px 18px;
+        font-size: 1.5rem;
+        background: #ee0e19;
+        border-radius: 5px;
+        color: white;
+        margin-right: 0;
+      }
+    }
   }
 
   // @media screen and (max-width: 768px) {
