@@ -3,7 +3,7 @@ import Faq from "./Faq";
 import { v4 as uuidv4 } from "uuid";
 import Input from "./Input";
 
-const FaqContainer = () => {
+const FaqSection = () => {
   const [faqs, setFaqs] = useState([
     {
       id: uuidv4(),
@@ -83,4 +83,4 @@ const FaqContainer = () => {
   );
 };
 
-export default FaqContainer;
+export default FaqSection;

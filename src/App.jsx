@@ -1,28 +1,29 @@
-import Nav from "./components/Nav";
-import TitleSection from "./components/TitleSection";
-
+import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { firebaseApp } from "./firebase/FirebseConfig";
 import "./App.scss";
-import Section_1 from "./components/Section_1";
-import Section_2 from "./components/Section_2";
-import Section_3 from "./components/Section_3";
-import Section_4 from "./components/Section_4";
-import FaqContainer from "./components/FaqContainer";
-import Input from "./components/Input";
-import Footer from "./components/Footer";
+import Home from "./components/Home/Home";
+import Login from "./components/Signin/Login";
 
 const App = () => {
+  const [user, SetUser] = useState(null);
+  useEffect(() => {
+    const auth = getAuth(firebaseApp);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user);
+      } else {
+        console.log("no user");
+      }
+    });
+  }, []);
   return (
     <div className="App">
-      <div className="nav-title-wrapper">
-        <Nav />
-        <TitleSection />
-      </div>
-      <Section_1 />
-      <Section_2 />
-      <Section_3 />
-      <Section_4 />
-      <FaqContainer />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </div>
   );
 };

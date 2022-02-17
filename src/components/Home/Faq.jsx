@@ -1,6 +1,4 @@
 import React from "react";
-import expand from "../assets/plus.svg";
-import cross from "../assets/cross.svg";
 
 const Faq = ({ ques, ans, id, isOpen, faqs, setFaqs }) => {
   const faqToggler = () => {

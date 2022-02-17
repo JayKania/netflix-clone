@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import navLogo from "../assets/Netflix-Logo.svg";
+import navLogo from "../../assets/Netflix-Logo.svg";
 
 const Nav = () => {
   return (
