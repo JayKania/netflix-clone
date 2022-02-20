@@ -1,29 +1,31 @@
-import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { firebaseApp } from "./firebase/FirebseConfig";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import "./App.scss";
+import Browse from "./components/browse/Browse";
+import RequireAuth from "./components/browse/RequireAuth";
 import Home from "./components/Home/Home";
 import Login from "./components/Signin/Login";
+import UserContextProvider, { useAuth } from "./context/UserContextProvider";
 
 const App = () => {
-  const [user, SetUser] = useState(null);
-  useEffect(() => {
-    const auth = getAuth(firebaseApp);
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log(user);
-      } else {
-        console.log("no user");
-      }
-    });
-  }, []);
+  const location = useLocation();
+  const authObject = useAuth();
+
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      <UserContextProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/browse"
+            element={
+              <RequireAuth>
+                <Browse />
+              </RequireAuth>
+            }
+          />
+        </Routes>
+      </UserContextProvider>
     </div>
   );
 };
