@@ -16,11 +16,6 @@
   }
 
   .form-footer-container {
-    // margin-top: 3.7rem;
-    // height: 90vh;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: space-between;
     form {
       max-width: 400px;
       padding: 2rem 3rem;
@@ -32,10 +27,19 @@
         opacity: 1;
         color: white;
         font-size: 2.2rem;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
+      }
+      .genric-err {
+        background-color: #e87c03;
+        padding: 0.5rem 1rem;
+        color: white;
+        border-radius: 5px;
+        margin-bottom: 1.5rem;
+        a {
+          color: white;
+        }
       }
       input {
-        margin-bottom: 1rem;
         outline: none;
         background-color: #333333;
         border: 0px;
@@ -45,6 +49,22 @@
         width: 100%;
         color: white;
         font-weight: 100;
+      }
+      .username-err {
+        border-bottom: 1px solid #e87c03;
+      }
+      .password-err {
+        border-bottom: 1px solid #e87c03;
+      }
+      .user-err {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+        color: #e87c03;
+      }
+      .pass-err {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+        color: #e87c03;
       }
       button {
         width: 100%;
@@ -131,6 +151,16 @@
         h2 {
           font-size: 3rem;
           margin-bottom: 3rem;
+        }
+        .genric-err {
+          font-size: 1.5rem;
+          a {
+            font-size: 1.5rem;
+          }
+        }
+        .user-err,
+        .pass-err {
+          font-size: 1.2rem;
         }
         input {
           font-size: 1.4rem;
