@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { useAuth } from "../../context/UserContextProvider";
 
 const Browse = () => {
-  const authObject = useAuth();
-  useEffect(() => {
-    console.log(authObject);
-  });
+  const { logout } = useAuth();
 
-  return <div>Browse</div>;
+  return (
+    <>
+      <div>Browse</div>
+      <input type="button" onClick={logout} value="Sign out" />
+    </>
+  );
 };
 
 export default Browse;

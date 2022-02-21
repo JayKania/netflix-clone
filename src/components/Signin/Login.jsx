@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { auth, firebaseApp } from "../../firebase/FirebseConfig";
 import { useAuth } from "../../context/UserContextProvider";
+import navLogo from "../../assets/Netflix-Logo.svg";
 
 const Login = ({ setUser }) => {
   const [username, setUserName] = useState("");
@@ -39,24 +40,34 @@ const Login = ({ setUser }) => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      <input
-        type="text"
-        id="username"
-        placeholder="Email or Phone Number"
-        value={username}
-        onChange={inputHandler}
-      />
-      <input
-        type="text"
-        id="password"
-        placeholder="Password"
-        value={password}
-        onChange={inputHandler}
-      />
-      <button type="submit">Sign in</button>
-      <input type="button" onClick={handleSignout} value="Sign out" />
-    </form>
+    <div className="form-container">
+      <img src={navLogo} alt="" className="nav-logo" />
+      <form onSubmit={submitHandler}>
+        <h2>Sign In</h2>
+        <input
+          type="text"
+          id="username"
+          placeholder="Email or Phone Number"
+          value={username}
+          onChange={inputHandler}
+        />
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          value={password}
+          onChange={inputHandler}
+        />
+        <button type="submit">Sign in</button>
+        <div className="checkbox-help-wrapper">
+          <div className="checkbox">
+            <input type="checkbox" name="remember" id="remember" />
+            <div>Remember me</div>
+          </div>
+          <div className="help">Need help?</div>
+        </div>
+      </form>
+    </div>
   );
 };
 
