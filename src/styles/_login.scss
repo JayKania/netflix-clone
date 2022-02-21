@@ -1,6 +1,8 @@
 .form-container {
   min-height: 100vh;
-  padding: 2rem 2rem;
+  overflow: hidden;
+
+  // padding: 2rem 2rem;
   background: url("../assets/background-image.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -9,67 +11,226 @@
   .nav-logo {
     height: 45px;
     width: 200px;
+    margin-top: 2rem;
+    margin-left: 1rem;
   }
-  form {
-    max-width: 400px;
-    padding: 2rem 3rem;
-    margin: 0 auto;
-    margin-top: 4rem;
-    background-color: rgba(0, 0, 0, 0.75);
-    border-radius: 5px;
-    h2 {
-      opacity: 1;
-      color: white;
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-    }
-    input {
-      margin-bottom: 1rem;
-      outline: none;
-      background-color: #333333;
-      border: 0px;
+
+  .form-footer-container {
+    // margin-top: 3.7rem;
+    // height: 90vh;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    form {
+      max-width: 400px;
+      padding: 2rem 3rem;
+      margin: 0 auto;
+      margin-top: 4rem;
+      background-color: rgba(0, 0, 0, 0.75);
       border-radius: 5px;
-      padding: 1rem;
-      font-size: 1.1rem;
-      width: 100%;
-      color: white;
-      font-weight: 100;
-    }
-    button {
-      width: 100%;
-      border: none;
-      padding: 1rem;
-      background-color: #e50914;
-      color: white;
-      font-size: 1.2rem;
-      font-weight: 700;
-      border-radius: 5px;
-      margin-top: 1rem;
-      &:hover {
-        cursor: pointer;
+      h2 {
+        opacity: 1;
+        color: white;
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
       }
-    }
-    .checkbox-help-wrapper {
-      padding-top: 1rem;
-      display: flex;
-      color: rgb(131, 131, 131);
-      justify-content: space-between;
-      align-items: center;
-      .checkbox {
-        display: flex;
-        align-items: center;
-        width: 70%;
-        input {
-          width: fit-content;
-          margin: 0;
-          margin-right: 5px;
+      input {
+        margin-bottom: 1rem;
+        outline: none;
+        background-color: #333333;
+        border: 0px;
+        border-radius: 5px;
+        padding: 1rem;
+        font-size: 1.1rem;
+        width: 100%;
+        color: white;
+        font-weight: 100;
+      }
+      button {
+        width: 100%;
+        border: none;
+        padding: 1rem;
+        background-color: #e50914;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 700;
+        border-radius: 5px;
+        margin-top: 1rem;
+        &:hover {
+          cursor: pointer;
         }
       }
-      .help:hover {
-        cursor: pointer;
-        text-decoration: underline;
+      .checkbox-help-wrapper {
+        padding-top: 1rem;
+        display: flex;
+        color: rgb(131, 131, 131);
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        .checkbox {
+          display: flex;
+          align-items: center;
+          width: 70%;
+          input[type="checkbox"] {
+            width: fit-content;
+            margin: 0;
+            margin-right: 5px;
+            &:checked {
+              color: grey;
+            }
+          }
+        }
+        .help:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+      .facebook-login {
+        margin-top: 2rem;
+        display: flex;
+        width: 80%;
+        font-size: 0.85rem;
+        &:hover {
+          cursor: pointer;
+        }
+        .facebook-icon {
+          margin-right: 10px;
+          height: 20px;
+          width: 20px;
+          img {
+            border-radius: 2px;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+        .facebook-login-text {
+          color: rgb(131, 131, 131);
+        }
+      }
+    }
+
+    footer {
+      margin-top: 5rem;
+      background-color: rgba(0, 0, 0, 0.75);
+    }
+  }
+  @media screen and (max-width: 480px) {
+    background: black;
+    .nav-logo {
+      height: 2rem;
+      width: 80px;
+    }
+    .form-footer-container {
+      form {
+        width: 100%;
+        padding: 1rem;
+        padding-bottom: 10rem;
+        border-radius: 0;
+        border-bottom: 2px solid gray;
+        h2 {
+          font-size: 3rem;
+          margin-bottom: 3rem;
+        }
+        input {
+          font-size: 1.4rem;
+          padding: 1.5rem 1.7rem;
+        }
+        button {
+          margin-top: 4rem;
+          font-size: 1.5rem;
+        }
+        .checkbox-help-wrapper {
+          .checkbox {
+            div {
+              font-size: 1.2rem;
+            }
+          }
+          .help {
+            font-size: 1.2rem;
+          }
+        }
+        .facebook-login {
+          .facebook-login-text {
+            font-size: 1.2rem;
+          }
+        }
+      }
+      footer {
+        width: 100%;
+        margin-top: 1rem;
+        .grid-container {
+          margin: 0 0.5rem;
+          padding: 1rem;
+          width: 100%;
+          .footer-title {
+            font-size: 1.6rem;
+            span {
+              font-size: 1.6rem;
+            }
+          }
+          .grid-item {
+            font-size: 1.3rem;
+          }
+        }
       }
     }
   }
-  position: relative;
+  @media (min-width: 550px) and (max-width: 1024px) {
+    .form-footer-container {
+      margin-top: 3.7rem;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      form {
+        padding: 4.5rem;
+        max-width: 450px;
+        h2 {
+          font-size: 3rem;
+          margin-bottom: 3rem;
+        }
+        input {
+          font-size: 1.4rem;
+          padding: 1.5rem 1.7rem;
+        }
+        button {
+          margin-top: 4rem;
+          font-size: 1.5rem;
+        }
+        .checkbox-help-wrapper {
+          .checkbox {
+            div {
+              font-size: 1.2rem;
+            }
+          }
+          .help {
+            font-size: 1.2rem;
+          }
+        }
+        .facebook-login {
+          .facebook-login-text {
+            font-size: 1.2rem;
+          }
+        }
+      }
+      footer {
+        width: 100%;
+        .grid-container {
+          margin: 0 0.5rem;
+          padding: 2rem;
+          width: 100%;
+          .footer-title {
+            font-size: 1.6rem;
+            span {
+              font-size: 1.6rem;
+            }
+          }
+          .grid-item {
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+  }
 }

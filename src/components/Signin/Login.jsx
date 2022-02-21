@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { auth, firebaseApp } from "../../firebase/FirebseConfig";
 import { useAuth } from "../../context/UserContextProvider";
 import navLogo from "../../assets/Netflix-Logo.svg";
+import Footer from "../Home/Footer";
 
 const Login = ({ setUser }) => {
   const [username, setUserName] = useState("");
@@ -42,31 +43,55 @@ const Login = ({ setUser }) => {
   return (
     <div className="form-container">
       <img src={navLogo} alt="" className="nav-logo" />
-      <form onSubmit={submitHandler}>
-        <h2>Sign In</h2>
-        <input
-          type="text"
-          id="username"
-          placeholder="Email or Phone Number"
-          value={username}
-          onChange={inputHandler}
-        />
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          value={password}
-          onChange={inputHandler}
-        />
-        <button type="submit">Sign in</button>
-        <div className="checkbox-help-wrapper">
-          <div className="checkbox">
-            <input type="checkbox" name="remember" id="remember" />
-            <div>Remember me</div>
+      <div className="form-footer-container">
+        <form onSubmit={submitHandler}>
+          <h2>Sign In</h2>
+          <input
+            type="text"
+            id="username"
+            placeholder="Email or Phone Number"
+            value={username}
+            onChange={inputHandler}
+          />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            value={password}
+            onChange={inputHandler}
+          />
+          <button type="submit">Sign in</button>
+          <div className="checkbox-help-wrapper">
+            <div className="checkbox">
+              <input type="checkbox" name="remember" id="remember" />
+              <div>Remember me</div>
+            </div>
+            <div className="help">Need help?</div>
           </div>
-          <div className="help">Need help?</div>
-        </div>
-      </form>
+          <div className="facebook-login">
+            <div className="facebook-icon">
+              <img
+                // class="facebook-icon"
+                src="https://assets.nflxext.com/ffe/siteui/login/images/FB-f-Logo__blue_57.png"
+              />
+            </div>
+            <span className="facebook-login-text">Login with facebook</span>
+          </div>
+        </form>
+        <footer className="footer">
+          <div className="grid-container">
+            <p className="footer-title">
+              Questions? Call <span>000-800-040-1843</span>{" "}
+            </p>
+            <div className="grid-item">FAQ</div>
+            <div className="grid-item">Help Center</div>
+            <div className="grid-item">Terms of Use</div>
+            <div className="grid-item">Privacy</div>
+            <div className="grid-item">Cookie Prefrences</div>
+            <div className="grid-item">Corporate Information</div>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 };
