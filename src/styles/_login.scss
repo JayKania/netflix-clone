@@ -1,5 +1,6 @@
 .form-container {
   min-height: 100vh;
+  overflow: hidden;
 
   // padding: 2rem 2rem;
   background: url("../assets/background-image.jpg");
@@ -191,7 +192,6 @@
       padding-top: 1rem;
       border-top: 2px solid gray;
       .grid-container {
-        margin: 0 0.5rem;
         padding: 1rem;
         width: 100%;
         .footer-title {
