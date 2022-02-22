@@ -1,11 +1,17 @@
 import {
   createUserWithEmailAndPassword,
+  FacebookAuthProvider,
   getAuth,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { auth, firebaseApp } from "../firebase/FirebseConfig";
+import {
+  auth,
+  facebookAuthrovider,
+  firebaseApp,
+} from "../firebase/FirebseConfig";
 
 export const UserContext = createContext();
 
@@ -20,8 +26,41 @@ const UserContextProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, username, password);
   };
 
-  const login = (username, password) => {
+  const loginWithEmail = (username, password) => {
     return signInWithEmailAndPassword(auth, username, password);
+  };
+  const loginWithPhone = (username, password) => {
+    // return signInWithEmailAndPassword(auth, username, password);
+  };
+
+  const loginInWithFacebookPopup = async () => {
+    return signInWithPopup(auth, facebookAuthrovider)
+      .then((result) => {
+        // The signed-in user info.
+        const user = result.user;
+        console.log(user);
+
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        console.log(credential);
+        const accessToken = credential.accessToken;
+
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        // The email of the user's account used.
+        const email = error.email;
+        console.log(email);
+        // The AuthCredential type that was used.
+        const credential = FacebookAuthProvider.credentialFromError(error);
+        console.log(credential);
+
+        // ...
+      });
   };
 
   const logout = () => {
@@ -31,7 +70,8 @@ const UserContextProvider = ({ children }) => {
   const value = {
     user,
     signup,
-    login,
+    loginWithEmail,
+    loginInWithFacebookPopup,
     logout,
   };
 

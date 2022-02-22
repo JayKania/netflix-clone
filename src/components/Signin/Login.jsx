@@ -30,27 +30,55 @@ const Login = () => {
     }
   };
 
+  const validateEmail = (email) => {
+    //Validates the email address
+    var emailRegex =
+      /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    //Validates the phone number
+    var phoneRegex = /^(\+91-|\+91|0)?\d{10}$/; // Change this regex based on requirement
+    return phoneRegex.test(phone);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
-    if (!username || !password) {
+    if (!validateEmail(username) && !validatePhone(username)) {
       setShowError(false);
-      if (!username) {
-        setUserError("Username cannot be empty");
-      }
+      setUserError("Please enter a valid email address or phone number.");
       if (!password) {
-        setPasswordError("Password cannnot be empty");
+        setShowError(false);
+        setPasswordError("Password cannnot be empty.");
       }
+      return;
+    }
+    if (!password) {
+      setShowError(false);
+      setPasswordError("Password cannnot be empty.");
       return;
     }
 
     authObject
-      .login(username, password)
+      .loginWithEmail(username, password)
       .then(() => {
-        console.log("loged in");
         from ? navigate(from, { replace: true }) : navigate("/browse");
       })
       .catch((err) => {
-        console.log(err.code);
+        setShowError(true);
+        setPassword("");
+      });
+  };
+
+  const loginWithFacebook = () => {
+    authObject
+      .loginInWithFacebookPopup()
+      .then(() => {
+        console.log("facebook");
+        from ? navigate(from, { replace: true }) : navigate("/browse");
+      })
+      .catch((err) => {
         setShowError(true);
         setPassword("");
       });
@@ -71,7 +99,7 @@ const Login = () => {
           </div>
         ) : null}
         <input
-          type="email"
+          type="text"
           id="username"
           placeholder="Email or Phone Number"
           value={username}
@@ -107,7 +135,9 @@ const Login = () => {
               src="https://assets.nflxext.com/ffe/siteui/login/images/FB-f-Logo__blue_57.png"
             />
           </div>
-          <span className="facebook-login-text">Login with facebook</span>
+          <span className="facebook-login-text" onClick={loginWithFacebook}>
+            Login with facebook
+          </span>
         </div>
       </form>
       <footer className="footer">
