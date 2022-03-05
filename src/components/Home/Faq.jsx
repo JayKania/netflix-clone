@@ -22,9 +22,11 @@ const Faq = ({ ques, ans, id, isOpen, faqs, setFaqs }) => {
       </div>
       <div className={`ans-wrapper`}>
         <div className={`ans ${isOpen ? "open" : "close"}`}>
-          {ans.map((a) => {
-            return <div>{a}</div>;
-          })}
+          {React.Children.toArray(
+            ans.map((a) => {
+              return <div>{a}</div>;
+            })
+          )}
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { getAuth, signOut } from "firebase/auth";
-import React, { useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useRef, useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth, firebaseApp } from "../../firebase/FirebseConfig";
 import { useAuth } from "../../context/UserContextProvider";
 import navLogo from "../../assets/Netflix-Logo.svg";
@@ -19,6 +19,10 @@ const Login = () => {
   const passwordErrorRef = useRef();
 
   const from = location.state ? location.state.form : null;
+
+  useEffect(() => {
+    authObject.user ? navigate("/browse") : navigate("/login");
+  }, []);
 
   const inputHandler = (event) => {
     if (event.target.id === "username") {
@@ -86,7 +90,9 @@ const Login = () => {
 
   return (
     <div className="form-container">
-      <img src={navLogo} alt="" className="nav-logo" />
+      <Link to="/">
+        <img src={navLogo} alt="" className="nav-logo" />
+      </Link>
 
       <form onSubmit={submitHandler}>
         <h2>Sign In</h2>$
