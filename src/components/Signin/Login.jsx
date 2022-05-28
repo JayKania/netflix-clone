@@ -1,10 +1,7 @@
-import { getAuth, signOut } from "firebase/auth";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { auth, firebaseApp } from "../../firebase/FirebseConfig";
-import { useAuth } from "../../context/UserContextProvider";
 import navLogo from "../../assets/Netflix-Logo.svg";
-import Footer from "../Home/Footer";
+import { useAuth } from "../../context/UserContextProvider";
 
 const Login = () => {
   const [username, setUserName] = useState("");
@@ -133,17 +130,6 @@ const Login = () => {
             <div>Remember me</div>
           </div>
           <div className="help">Need help?</div>
-        </div>
-        <div className="facebook-login">
-          <div className="facebook-icon">
-            <img
-              // class="facebook-icon"
-              src="https://assets.nflxext.com/ffe/siteui/login/images/FB-f-Logo__blue_57.png"
-            />
-          </div>
-          <span className="facebook-login-text" onClick={loginWithFacebook}>
-            Login with facebook
-          </span>
         </div>
       </form>
       <footer className="footer">

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/UserContextProvider";
-import { auth } from "../../firebase/FirebseConfig";
 import AllSections from "./AllSections";
 import FaqSection from "./FaqSection";
 import Footer from "./Footer";
