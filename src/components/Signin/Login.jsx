@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import navLogo from "../../assets/Netflix-Logo.svg";
-import { useAuth } from "../../context/UserContextProvider";
+import userStore from "../../store/UserStore";
 
 const Login = () => {
   const [username, setUserName] = useState("");
@@ -11,14 +11,19 @@ const Login = () => {
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const authObject = useAuth();
   const userErrorRef = useRef();
   const passwordErrorRef = useRef();
 
   const from = location.state ? location.state.form : null;
 
+  // getting user actions from store
+  const { user, loginWithEmail } = userStore((state) => ({
+    user: state.user,
+    loginWithEmail: state.loginWithEmail,
+  }));
+
   useEffect(() => {
-    authObject.user ? navigate("/browse") : navigate("/login");
+    user ? navigate("/browse") : navigate("/login");
   }, []);
 
   const inputHandler = (event) => {
@@ -61,25 +66,12 @@ const Login = () => {
       return;
     }
 
-    authObject
-      .loginWithEmail(username, password)
+    loginWithEmail(username, password)
       .then(() => {
         from ? navigate(from, { replace: true }) : navigate("/browse");
       })
       .catch((err) => {
-        setShowError(true);
-        setPassword("");
-      });
-  };
-
-  const loginWithFacebook = () => {
-    authObject
-      .loginInWithFacebookPopup()
-      .then(() => {
-        console.log("facebook");
-        from ? navigate(from, { replace: true }) : navigate("/browse");
-      })
-      .catch((err) => {
+        console.log(err.message);
         setShowError(true);
         setPassword("");
       });
@@ -104,7 +96,7 @@ const Login = () => {
         <input
           type="text"
           id="username"
-          placeholder="Email or Phone Number"
+          placeholder="Email address"
           value={username}
           onChange={inputHandler}
           className={`${userError ? "username-err" : ""}`}
