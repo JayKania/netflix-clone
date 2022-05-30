@@ -77,8 +77,8 @@ const FaqSection = () => {
       <div className="faq-container">
         <h1>Frequently Asked Questions</h1>
         {questions}
-        <Input />
       </div>
+      <Input />
     </div>
   );
 };

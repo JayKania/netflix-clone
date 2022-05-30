@@ -21,8 +21,8 @@ const Home = () => {
         <TitleSection />
       </div>
       <AllSections />
-      <FaqSection />
-      <Footer />
+      {/* <FaqSection />
+      <Footer /> */}
     </>
   );
 };
