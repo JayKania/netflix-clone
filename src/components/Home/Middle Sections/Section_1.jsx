@@ -62,8 +62,15 @@ const StyledDescription = styled.div`
     }
   }
 
-  @media only screen and (max-width: 912px) {
+  @media only screen and (min-width: 550px) and (max-width: 1240px) {
+    flex-basis: 100%;
     text-align: center;
+    h1 {
+      font-size: 3.5rem;
+    }
+    p {
+      font-size: 2.3rem;
+    }
   }
 `;
 
@@ -121,6 +128,24 @@ const StyledImageVidWrapper = styled.div`
       width: fit-content;
       width: 218px;
       height: 128px;
+    }
+  }
+  @media only screen and (min-width: 550px) and (max-width: 1240px) {
+    width: 550px;
+    height: 425px;
+    .tv-img {
+      position: absolute;
+      width: 550px;
+      height: 425px;
+      background-size: 550px 425px;
+    }
+    video {
+      position: absolute;
+      top: 18%;
+      left: 13.25%;
+      width: fit-content;
+      width: 399px;
+      height: 250px;
     }
   }
 `;

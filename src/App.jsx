@@ -1,12 +1,9 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import "./App.scss";
 import Browse from "./components/browse/Browse";
 import RequireAuth from "./components/browse/RequireAuth";
 import Home from "./components/Home/Home";
 import Login from "./components/Signin/Login";
-
 const App = () => {
-  const location = useLocation();
   return (
     <div className="App">
       <Routes>
