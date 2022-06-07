@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import { fetchSignInMethodsForEmail } from "firebase/auth";
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { auth } from "../../firebase/FirebseConfig";
+import userStore from "../../store/UserStore";
 
 const Input = () => {
+  const { user, signup, setCurrentEmail } = userStore((state) => ({
+    user: state.user,
+    signup: state.signup,
+    setCurrentEmail: state.setCurrentEmail,
+  }));
+
   const [email, setEmail] = useState("");
   const [userError, setUserError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const submitRef = useRef(null);
+
+  const navigate = useNavigate();
 
   const inputHandler = (event) => {
     setEmail(event.target.value);
@@ -21,7 +35,20 @@ const Input = () => {
       setUserError("Please enter a valid email address.");
       return;
     }
+    setLoading(true);
+    fetchSignInMethodsForEmail(auth, email)
+      .then((data) => {
+        // console.log(data);
+        setCurrentEmail(email);
+        if (data.length === 1) {
+          navigate("/login");
+        } else {
+          navigate("/signup");
+        }
+      })
+      .catch((err) => console.log(err.code));
     setUserError("");
+    setLoading(false);
   };
 
   return (
@@ -36,7 +63,13 @@ const Input = () => {
         />
         <div className="email-err">{userError}</div>
       </StyledInputErrWrapper>
-      <button onClick={submitHandler}>Get Started {">"}</button>
+      <button
+        onClick={submitHandler}
+        ref={submitRef}
+        disabled={loading ? true : false}
+      >
+        Get Started {">"}
+      </button>
     </StyledInputButtonWrapper>
   );
 };
@@ -57,6 +90,10 @@ const StyledInputButtonWrapper = styled.div`
     padding: 1rem 0.5rem;
     :hover {
       cursor: pointer;
+    }
+    :disabled {
+      background-color: #95080f;
+      cursor: default;
     }
   }
   @media only screen and (max-width: 540px) {

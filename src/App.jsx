@@ -3,6 +3,7 @@ import Browse from "./components/browse/Browse";
 import RequireAuth from "./components/browse/RequireAuth";
 import Home from "./components/Home/Home";
 import Login from "./components/Signin/Login";
+import Signup from "./components/Signup/Signup";
 const App = () => {
   return (
     <div className="App">
@@ -17,6 +18,7 @@ const App = () => {
             </RequireAuth>
           }
         />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </div>
   );

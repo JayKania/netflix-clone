@@ -7,7 +7,14 @@ import styled from "styled-components";
 import background_img from "../../assets/background-image.jpg";
 
 const Login = () => {
-  const [username, setUserName] = useState("");
+  // getting user actions from store
+  const { user, loginWithEmail, email } = userStore((state) => ({
+    user: state.user,
+    loginWithEmail: state.loginWithEmail,
+    email: state.email,
+  }));
+
+  const [username, setUserName] = useState(email);
   const [password, setPassword] = useState("");
   const [userError, setUserError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -18,12 +25,6 @@ const Login = () => {
   const passwordErrorRef = useRef();
 
   const from = location.state ? location.state.form : null;
-
-  // getting user actions from store
-  const { user, loginWithEmail } = userStore((state) => ({
-    user: state.user,
-    loginWithEmail: state.loginWithEmail,
-  }));
 
   useEffect(() => {
     user ? navigate("/browse") : navigate("/login");
@@ -41,14 +42,14 @@ const Login = () => {
 
   const validateEmail = (email) => {
     //Validates the email address
-    var emailRegex =
+    const emailRegex =
       /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return emailRegex.test(email);
   };
 
   const validatePhone = (phone) => {
     //Validates the phone number
-    var phoneRegex = /^(\+91-|\+91|0)?\d{10}$/; // Change this regex based on requirement
+    const phoneRegex = /^(\+91-|\+91|0)?\d{10}$/; // Change this regex based on requirement
     return phoneRegex.test(phone);
   };
 

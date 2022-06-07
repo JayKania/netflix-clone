@@ -14,7 +14,7 @@ const Home = () => {
   const user = userStore((state) => state.user);
   useEffect(() => {
     user ? navigate("/browse") : navigate("/");
-  }, []);
+  }, [user]);
   return (
     <>
       <StyledNavTitleWrapper className="nav-title-wrapper">
