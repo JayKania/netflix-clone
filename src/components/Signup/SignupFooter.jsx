@@ -24,26 +24,16 @@ const StyledFooter = styled.div`
   padding-bottom: 2rem;
   color: #757575;
   background-color: #f3f3f3;
-  margin-top: 5rem;
-
   @media only screen and (max-width: 540px) {
-    border-top: 2px solid gray;
-    margin-top: 0;
-    padding-top: 1rem;
-    width: 100%;
   }
 
   @media (min-width: 550px) and (max-width: 1025px) and (orientation: portrait) {
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    width: 100%;
   }
 `;
 
 const StyledGridContainer = styled.div`
   width: 55%;
-  margin: 0rem 3rem;
+  padding: 0 3rem;
   display: grid;
   grid-template-columns: auto auto auto auto;
   font-size: 0.9rem;
@@ -60,6 +50,7 @@ const StyledGridContainer = styled.div`
     grid-column: 1/5;
     font-size: 1rem;
     font-weight: 500;
+    width: fit-content;
     span {
       &:hover {
         text-decoration: underline;
@@ -93,7 +84,6 @@ const StyledGridContainer = styled.div`
   }
 
   @media only screen and (min-width: 550px) and (max-width: 1024px) {
-    margin: 0 0.5rem;
     padding: 2rem;
     width: 100%;
     .footer-title {

@@ -6,11 +6,14 @@ import userStore from "../../store/UserStore";
 import SignupFooter from "./SignupFooter";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   // store
-  const { user, email } = userStore((state) => ({
+  const { user, email, signup, setCurrentEmail } = userStore((state) => ({
     user: state.user,
     email: state.email,
     signup: state.signup,
+    setCurrentEmail: state.setCurrentEmail,
   }));
 
   // state
@@ -18,6 +21,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [emailErr, setEmailErr] = useState("");
   const [passErr, setPasswordErr] = useState("");
+  const [signupErr, setSignupErr] = useState(false);
 
   // handlers
   const inputHandler = (event) => {
@@ -59,7 +63,18 @@ const Signup = () => {
     } else {
       setEmailErr("");
       setPasswordErr("");
+      signup(signupEmail, password)
+        .then(() => {
+          navigate("/browse");
+        })
+        .catch((err) => {
+          setSignupErr(true);
+        });
     }
+  };
+
+  const changeGlobalEmailHandler = () => {
+    setCurrentEmail(signupEmail);
   };
 
   // helpers
@@ -74,61 +89,76 @@ const Signup = () => {
     return password.length >= 6 && password.length <= 60 ? true : false;
   };
 
-  const navigate = useNavigate();
   useEffect(() => {
     user ? navigate("/browse") : navigate("/signup");
   }, []);
+
   return (
     <StyledSignupContainer>
-      <StyledNav>
-        <StyledNavLogo className="nav-logo">
-          <a href="/">
-            <img src={navLogo} alt="" />
+      <StyledNavFormContainer>
+        <StyledNav>
+          <StyledNavLogo className="nav-logo">
+            <a href="/">
+              <img src={navLogo} alt="" />
+            </a>
+          </StyledNavLogo>
+          <a className="login" href="/login">
+            Sign In
           </a>
-        </StyledNavLogo>
-        <a className="login" href="/login">
-          Sign In
-        </a>
-      </StyledNav>
-      <StyledSignupForm onSubmit={submitHandler}>
-        <h3>
-          Create a password to start
-          <br /> your membership
-        </h3>
-        <p>
-          Just a few more steps and you're done!<br></br> We hate paperwork,
-          too.
-        </p>
-        <input
-          type="text"
-          placeholder="Email"
-          value={signupEmail}
-          onChange={inputHandler}
-          id="email"
-          className={`${emailErr ? "err" : ""}`}
-        />
-        <span className="email-err">{emailErr}</span>
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={inputHandler}
-          id="password"
-          className={`password" ${passErr ? "err" : ""}`}
-        />
-        <span className="password-err">{passErr}</span>
+        </StyledNav>
+        <StyledSignupForm onSubmit={submitHandler}>
+          {signupErr ? (
+            <p className="signup-err">
+              <strong>Looks like that account already exists.</strong>{" "}
+              <a href="/login" onClick={changeGlobalEmailHandler}>
+                Sign into that account
+              </a>{" "}
+              or try using a different email.
+            </p>
+          ) : null}
+          <h3>Create a password to start your membership</h3>
+          <p>
+            Just a few more steps and you're done!<br></br> We hate paperwork,
+            too.
+          </p>
+          <input
+            type="text"
+            placeholder="Email"
+            value={signupEmail}
+            onChange={inputHandler}
+            id="email"
+            className={`${emailErr ? "err" : ""}`}
+          />
+          <span className="email-err">{emailErr}</span>
+          <input
+            type="password"
+            placeholder="Add a password"
+            value={password}
+            onChange={inputHandler}
+            id="password"
+            className={`password" ${passErr ? "err" : ""}`}
+          />
+          <span className="password-err">{passErr}</span>
 
-        <button>Next</button>
-      </StyledSignupForm>
+          <button>Next</button>
+        </StyledSignupForm>
+      </StyledNavFormContainer>
       <SignupFooter />
     </StyledSignupContainer>
   );
 };
 
-const StyledSignupContainer = styled.div``;
+const StyledSignupContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const StyledNavFormContainer = styled.div``;
 
 const StyledNav = styled.nav`
-  padding: 1.25rem 1.75rem;
+  padding: 1.75rem 1.5rem;
   border-bottom: 1px solid #e4e4e4;
   display: flex;
   justify-content: space-between;
@@ -142,6 +172,9 @@ const StyledNav = styled.nav`
 
     :hover {
       text-decoration: underline;
+    }
+    @media only screen and (min-width: 550px) and (max-width: 1025px) {
+      font-size: 1.7rem;
     }
   }
 `;
@@ -169,7 +202,17 @@ const StyledSignupForm = styled.form`
   max-width: 475px;
   margin: 4rem auto;
   padding: 1rem;
-  /* border: 1px solid black; */
+  .signup-err {
+    background-color: #ffa00a;
+    color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.145rem;
+    a {
+      text-decoration: underline;
+      color: white;
+    }
+  }
   h3 {
     font-size: 2rem;
     font-weight: 500;
@@ -185,7 +228,8 @@ const StyledSignupForm = styled.form`
     margin-top: 1rem;
     font-size: 1.2rem;
     outline: none;
-    border: 1px solid black;
+    border: 1px solid #8c8c8c;
+    border-radius: 2px;
     &.err {
       border-color: #b92d2b;
     }
@@ -199,13 +243,56 @@ const StyledSignupForm = styled.form`
     font-size: 1.65rem;
     color: white;
     padding: 1rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
     background-color: #f6121d;
     border: none;
+    border-radius: 5px;
   }
   span {
     font-size: 0.85rem;
     color: #b92d2b;
+  }
+  @media only screen and (max-width: 540px) {
+    padding: 3rem 1.5rem;
+    h3 {
+      font-size: 2.5rem;
+    }
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 1.3rem;
+    }
+    input {
+      padding: 1.5rem;
+      font-size: 1.7rem;
+    }
+    button {
+      font-size: 2.15rem;
+      padding: 1.5rem;
+    }
+    span {
+      font-size: 1.35rem;
+    }
+  }
+  @media only screen and (min-width: 550px) and (max-width: 1025px) {
+    padding: 5rem 1.5rem;
+    h3 {
+      font-size: 2.5rem;
+    }
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 1.3rem;
+    }
+    input {
+      padding: 1.5rem;
+      font-size: 1.7rem;
+    }
+    button {
+      font-size: 2.15rem;
+      padding: 1.5rem;
+    }
+    span {
+      font-size: 1.35rem;
+    }
   }
 `;
 

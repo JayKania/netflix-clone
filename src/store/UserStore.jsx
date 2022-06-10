@@ -24,6 +24,8 @@ const store = (set) => ({
   signup: async (username, password) => {
     const data = await createUserWithEmailAndPassword(auth, username, password);
     // console.log(data.length);
+    console.log(data.user);
+    set({ user: data.user });
   },
 });
 
