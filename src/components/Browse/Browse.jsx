@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import userStore from "./store/UserStore";
-import Profiles from "./components/Home/Profiles";
+import userStore from "../../store/UserStore";
+import Profiles from "../Home/Profiles";
 import { setDoc, doc, collection, addDoc } from "firebase/firestore";
-import { db } from "./firebase/FirebseConfig";
+import { db } from "../../firebase/FirebseConfig";
 
 const Browse = () => {
   const { logOut, user } = userStore((state) => ({
