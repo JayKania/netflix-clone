@@ -5,6 +5,7 @@ import Home from "./components/Home/Home";
 import Login from "./components/Signin/Login";
 import Signup from "./components/Signup/Signup";
 import { useEffect } from "react";
+import Profiles from "./components/Home/Profiles";
 const App = () => {
   // const location = useLocation();
 
@@ -25,6 +26,7 @@ const App = () => {
           }
         />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/profiles" element={<Profiles />} />
       </Routes>
     </div>
   );

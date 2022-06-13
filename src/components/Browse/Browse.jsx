@@ -2,38 +2,45 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import userStore from "../../store/UserStore";
 import Profiles from "../Home/Profiles";
-import { setDoc, doc, collection, addDoc } from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase/FirebseConfig";
+import Nav from "./Navigation/Nav";
 
 const Browse = () => {
   const { logOut, user } = userStore((state) => ({
     logOut: state.logOut,
     user: state.user,
   }));
+  // const {profile, }
 
   const location = useLocation();
   const from = location.state ? location.state.from : null;
 
   useEffect(() => {
-    const createProfile = async () => {
-      // getting reference of our document (uid)
-      const docRef = doc(db, "users", user.uid);
+    // getting reference of our document (uid)
+    let docRef;
+    let docSnap;
 
-      // now adding emailId as field in our selected document
-      await setDoc(docRef, { email: user.email });
-
-      // now for subcollection there are no methods for creating collections or subcollections in firebase v9
-      // we just start writing into the document of the subcollection by specifing the path with name of subcollection
-      // ex: users/uid/profiles translates to users -> collection, uid -> document, profiles -> subcollection
-      await setDoc(
-        doc(db, "users/" + user.uid + "/profiles", user.email.split(`@`)[0]),
-        {
-          movies: ["Dr. Strange"],
-        }
-      );
+    const checkUserExistInDatabase = async () => {
+      if (user) {
+        docRef = doc(db, "users", user.uid);
+        docSnap = await getDoc(docRef);
+      }
     };
 
-    if (from) {
+    checkUserExistInDatabase();
+
+    const createProfile = async () => {
+      // now adding emailId as field in our selected document
+      await setDoc(docRef, {
+        email: user.email,
+        profiles: [{ name: user.email.split(`@`)[0], wishlist: [] }],
+      });
+    };
+
+    // !docSnap.exists() is usefull when user comes from signup route and reloads the page
+    // we dont want to overwrite the doc unnecessarily
+    if (from && !docSnap.exists()) {
       createProfile();
     }
   }, [from, user]);
@@ -43,6 +50,7 @@ const Browse = () => {
       {/* <div>
         <Profiles />
       </div> */}
+      <Nav />
       <input
         type="button"
         onClick={() => {
