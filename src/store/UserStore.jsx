@@ -7,7 +7,7 @@ import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { auth } from "../firebase/FirebseConfig";
 
-const store = (set) => ({
+const store = (set, get) => ({
   user: null,
   email: null,
   setCurrentEmail: (email) => {
@@ -16,6 +16,7 @@ const store = (set) => ({
   loginWithEmail: async (username, password) => {
     const data = await signInWithEmailAndPassword(auth, username, password);
     set({ user: data.user });
+    set({ email: get().user.email });
   },
   logOut: async () => {
     await signOut(auth);
@@ -26,6 +27,8 @@ const store = (set) => ({
     // console.log(data.length);
     console.log(data.user);
     set({ user: data.user });
+    set({ email: get().user.email });
+    // console.log(get().user.email); // this will print
   },
 });
 

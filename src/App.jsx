@@ -1,10 +1,16 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import Browse from "./components/browse/Browse";
-import RequireAuth from "./components/browse/RequireAuth";
+import Browse from "./components/Browse/Browse";
+import RequireAuth from "./components/Browse/RequireAuth";
 import Home from "./components/Home/Home";
 import Login from "./components/Signin/Login";
 import Signup from "./components/Signup/Signup";
+import { useEffect } from "react";
 const App = () => {
+  // const location = useLocation();
+
+  // useEffect(() => {
+  //   console.log(location);
+  // });
   return (
     <div className="App">
       <Routes>

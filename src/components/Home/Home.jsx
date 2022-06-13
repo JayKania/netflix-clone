@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import userStore from "../../store/UserStore";
 import FaqSection from "./FAQ Section/FaqSection";
@@ -12,18 +12,28 @@ import background_img from "../../assets/background-image.jpg";
 const Home = () => {
   const navigate = useNavigate();
   const user = userStore((state) => state.user);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    user ? navigate("/browse") : navigate("/");
+    if (user) {
+      navigate("/browse");
+    } else {
+      navigate("/");
+      setLoading(false);
+    }
   }, [user]);
   return (
     <>
-      <StyledNavTitleWrapper className="nav-title-wrapper">
-        <Nav />
-        <TitleSection />
-      </StyledNavTitleWrapper>
-      <AllSections />
-      <FaqSection />
-      <Footer />
+      {loading ? null : (
+        <>
+          <StyledNavTitleWrapper className="nav-title-wrapper">
+            <Nav />
+            <TitleSection />
+          </StyledNavTitleWrapper>
+          <AllSections />
+          <FaqSection />
+          <Footer />
+        </>
+      )}
     </>
   );
 };
