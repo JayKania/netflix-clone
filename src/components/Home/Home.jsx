@@ -1,39 +1,23 @@
-import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import background_img from "../../assets/background-image.jpg";
 import userStore from "../../store/UserStore";
 import FaqSection from "./FAQ Section/FaqSection";
 import Footer from "./Footer/Footer";
 import AllSections from "./Middle Sections/AllSections";
 import Nav from "./Navigation/Nav";
 import TitleSection from "./Title Section/TitleSection";
-import styled from "styled-components";
-import background_img from "../../assets/background-image.jpg";
 
 const Home = () => {
-  const navigate = useNavigate();
-  const user = userStore((state) => state.user);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    if (user) {
-      navigate("/browse");
-    } else {
-      navigate("/");
-      setLoading(false);
-    }
-  }, [user]);
   return (
     <>
-      {loading ? null : (
-        <>
-          <StyledNavTitleWrapper className="nav-title-wrapper">
-            <Nav />
-            <TitleSection />
-          </StyledNavTitleWrapper>
-          <AllSections />
-          <FaqSection />
-          <Footer />
-        </>
-      )}
+      <StyledNavTitleWrapper className="nav-title-wrapper">
+        <Nav />
+        <TitleSection />
+      </StyledNavTitleWrapper>
+      <AllSections />
+      <FaqSection />
+      <Footer />
     </>
   );
 };

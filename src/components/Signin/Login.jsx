@@ -1,15 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import background_img from "../../assets/background-image.jpg";
 import navLogo from "../../assets/Netflix-Logo.svg";
 import userStore from "../../store/UserStore";
 import LoginFooter from "./LoginFooter";
-import styled from "styled-components";
-import background_img from "../../assets/background-image.jpg";
 
 const Login = () => {
   // getting user actions from store
-  const { user, loginWithEmail, email } = userStore((state) => ({
-    user: state.user,
+  const { loginWithEmail, email } = userStore((state) => ({
     loginWithEmail: state.loginWithEmail,
     email: state.email,
   }));
@@ -19,22 +18,15 @@ const Login = () => {
   const [userError, setUserError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showError, setShowError] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
   const userErrorRef = useRef();
   const passwordErrorRef = useRef();
 
-  const from = location.state ? location.state.form : null;
+  let from = location.state ? location.state.form : null;
 
-  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    if (user) {
-      navigate("/browse");
-    } else {
-      navigate("/login");
-      setLoading(false);
-    }
-  }, [user]);
+    console.log("hello");
+  });
 
   const inputHandler = (event) => {
     if (event.target.id === "username") {
@@ -76,72 +68,62 @@ const Login = () => {
       return;
     }
 
-    loginWithEmail(username, password)
-      .then(() => {
-        from
-          ? navigate(from, { replace: true })
-          : navigate("/browse", { replace: true });
-      })
-      .catch((err) => {
-        console.log(err.message);
-        setShowError(true);
-        setPassword("");
-      });
+    loginWithEmail(username, password).catch((err) => {
+      console.log(err.message);
+      setShowError(true);
+      setPassword("");
+    });
   };
 
   return (
-    <>
-      {loading ? null : (
-        <StyledFormContainer className="form-container">
-          <Link to="/">
-            <img src={navLogo} alt="" className="nav-logo" />
-          </Link>
+    <StyledFormContainer className="form-container">
+      <Link to="/">
+        <img src={navLogo} alt="" className="nav-logo" />
+      </Link>
 
-          <StyledForm onSubmit={submitHandler}>
-            <h2>Sign In</h2>$
-            {showError ? (
-              <div className={"genric-err"}>
-                Incorrect password. Please try again or you can{" "}
-                <a href="#" id="reset-password">
-                  reset your password.
-                </a>
-              </div>
-            ) : null}
-            <input
-              type="text"
-              id="username"
-              placeholder="Email address"
-              value={username}
-              onChange={inputHandler}
-              className={`${userError ? "username-err" : ""}`}
-            />
-            <div className="user-err" ref={userErrorRef}>
-              {userError}
-            </div>
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              value={password}
-              onChange={inputHandler}
-              className={`${passwordError ? "password-err" : ""}`}
-            />
-            <div className="pass-err" ref={passwordErrorRef}>
-              {passwordError}
-            </div>
-            <button type="submit">Sign in</button>
-            <div className="checkbox-help-wrapper">
-              <div className="checkbox">
-                <input type="checkbox" name="remember" id="remember" />
-                <div>Remember me</div>
-              </div>
-              <div className="help">Need help?</div>
-            </div>
-          </StyledForm>
-          <LoginFooter />
-        </StyledFormContainer>
-      )}
-    </>
+      <StyledForm onSubmit={submitHandler}>
+        <h2>Sign In</h2>$
+        {showError ? (
+          <div className={"genric-err"}>
+            Incorrect password. Please try again or you can{" "}
+            <a href="#" id="reset-password">
+              reset your password.
+            </a>
+          </div>
+        ) : null}
+        <input
+          type="text"
+          id="username"
+          placeholder="Email address"
+          value={username}
+          onChange={inputHandler}
+          className={`${userError ? "username-err" : ""}`}
+        />
+        <div className="user-err" ref={userErrorRef}>
+          {userError}
+        </div>
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          value={password}
+          onChange={inputHandler}
+          className={`${passwordError ? "password-err" : ""}`}
+        />
+        <div className="pass-err" ref={passwordErrorRef}>
+          {passwordError}
+        </div>
+        <button type="submit">Sign in</button>
+        <div className="checkbox-help-wrapper">
+          <div className="checkbox">
+            <input type="checkbox" name="remember" id="remember" />
+            <div>Remember me</div>
+          </div>
+          <div className="help">Need help?</div>
+        </div>
+      </StyledForm>
+      <LoginFooter />
+    </StyledFormContainer>
   );
 };
 

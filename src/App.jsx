@@ -1,22 +1,31 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Browse from "./components/Browse/Browse";
+import CheckUser from "./components/Browse/CheckUser";
 import RequireAuth from "./components/Browse/RequireAuth";
 import Home from "./components/Home/Home";
+import Profiles from "./components/Home/Profiles";
 import Login from "./components/Signin/Login";
 import Signup from "./components/Signup/Signup";
-import { useEffect } from "react";
-import Profiles from "./components/Home/Profiles";
 const App = () => {
-  // const location = useLocation();
-
-  // useEffect(() => {
-  //   console.log(location);
-  // });
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <CheckUser>
+              <Home />
+            </CheckUser>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <CheckUser>
+              <Login />
+            </CheckUser>
+          }
+        />
         <Route
           path="/browse"
           element={
@@ -25,8 +34,22 @@ const App = () => {
             </RequireAuth>
           }
         />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/profiles" element={<Profiles />} />
+        <Route
+          path="/profiles"
+          element={
+            <RequireAuth>
+              <Profiles />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <CheckUser>
+              <Signup />
+            </CheckUser>
+          }
+        />
       </Routes>
     </div>
   );

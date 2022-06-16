@@ -1,31 +1,17 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import styled from "styled-components";
 import navLogo from "../../assets/Netflix-Logo.svg";
 import userStore from "../../store/UserStore";
 import SignupFooter from "./SignupFooter";
 
 const Signup = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
   // store
-  const { user, email, signup, setCurrentEmail } = userStore((state) => ({
+  const { email, signup, setCurrentEmail } = userStore((state) => ({
     user: state.user,
     email: state.email,
     signup: state.signup,
     setCurrentEmail: state.setCurrentEmail,
   }));
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (user) {
-      navigate("/browse");
-    } else {
-      navigate("/signup");
-      setLoading(false);
-    }
-  }, [user]);
 
   // state
   const [signupEmail, setSignupEmail] = useState(email);
@@ -74,13 +60,9 @@ const Signup = () => {
     } else {
       setEmailErr("");
       setPasswordErr("");
-      signup(signupEmail, password)
-        .then(() => {
-          navigate("/browse", { replace: true, state: { from: location } });
-        })
-        .catch((err) => {
-          setSignupErr(true);
-        });
+      signup(signupEmail, password).catch((err) => {
+        setSignupErr(true);
+      });
     }
   };
 
@@ -101,61 +83,57 @@ const Signup = () => {
   };
 
   return (
-    <>
-      {loading ? null : (
-        <StyledSignupContainer>
-          <StyledNavFormContainer>
-            <StyledNav>
-              <StyledNavLogo className="nav-logo">
-                <a href="/">
-                  <img src={navLogo} alt="" />
-                </a>
-              </StyledNavLogo>
-              <a className="login" href="/login">
-                Sign In
-              </a>
-            </StyledNav>
-            <StyledSignupForm onSubmit={submitHandler}>
-              {signupErr ? (
-                <p className="signup-err">
-                  <strong>Looks like that account already exists.</strong>{" "}
-                  <a href="/login" onClick={changeGlobalEmailHandler}>
-                    Sign into that account
-                  </a>{" "}
-                  or try using a different email.
-                </p>
-              ) : null}
-              <h3>Create a password to start your membership</h3>
-              <p>
-                Just a few more steps and you're done!<br></br> We hate
-                paperwork, too.
-              </p>
-              <input
-                type="text"
-                placeholder="Email"
-                value={signupEmail}
-                onChange={inputHandler}
-                id="email"
-                className={`${emailErr ? "err" : ""}`}
-              />
-              <span className="email-err">{emailErr}</span>
-              <input
-                type="password"
-                placeholder="Add a password"
-                value={password}
-                onChange={inputHandler}
-                id="password"
-                className={`password" ${passErr ? "err" : ""}`}
-              />
-              <span className="password-err">{passErr}</span>
+    <StyledSignupContainer>
+      <StyledNavFormContainer>
+        <StyledNav>
+          <StyledNavLogo className="nav-logo">
+            <a href="/">
+              <img src={navLogo} alt="" />
+            </a>
+          </StyledNavLogo>
+          <a className="login" href="/login">
+            Sign In
+          </a>
+        </StyledNav>
+        <StyledSignupForm onSubmit={submitHandler}>
+          {signupErr ? (
+            <p className="signup-err">
+              <strong>Looks like that account already exists.</strong>{" "}
+              <a href="/login" onClick={changeGlobalEmailHandler}>
+                Sign into that account
+              </a>{" "}
+              or try using a different email.
+            </p>
+          ) : null}
+          <h3>Create a password to start your membership</h3>
+          <p>
+            Just a few more steps and you're done!<br></br> We hate paperwork,
+            too.
+          </p>
+          <input
+            type="text"
+            placeholder="Email"
+            value={signupEmail}
+            onChange={inputHandler}
+            id="email"
+            className={`${emailErr ? "err" : ""}`}
+          />
+          <span className="email-err">{emailErr}</span>
+          <input
+            type="password"
+            placeholder="Add a password"
+            value={password}
+            onChange={inputHandler}
+            id="password"
+            className={`password" ${passErr ? "err" : ""}`}
+          />
+          <span className="password-err">{passErr}</span>
 
-              <button>Next</button>
-            </StyledSignupForm>
-          </StyledNavFormContainer>
-          <SignupFooter />
-        </StyledSignupContainer>
-      )}
-    </>
+          <button>Next</button>
+        </StyledSignupForm>
+      </StyledNavFormContainer>
+      <SignupFooter />
+    </StyledSignupContainer>
   );
 };
 
