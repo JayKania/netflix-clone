@@ -40,12 +40,18 @@ const Nav = () => {
 
 const StyledNav = styled.nav`
   display: flex;
-  background-color: #141414;
   padding: 0rem 2.5rem;
   align-items: center;
   height: 68px;
   width: 100%;
   justify-content: space-between;
+  z-index: 1;
+  position: fixed;
+  background: linear-gradient(
+    to bottom,
+    rgba(35, 35, 35, 1),
+    rgba(35, 35, 35, 0)
+  );
 `;
 
 const StyledLinks = styled.div`
@@ -56,7 +62,7 @@ const StyledLinks = styled.div`
     padding: 0.5rem 1rem;
     transition: color 250ms ease;
     :hover {
-      color: #a1a1a1;
+      color: #cdcdcd;
     }
   }
 `;
