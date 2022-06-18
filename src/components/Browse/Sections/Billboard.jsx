@@ -21,7 +21,7 @@ const Billboard = () => {
             <span>Play</span>
           </button>
           <button className="info-btn">
-            <span className="info-icon">i</span>
+            <div className="info-icon">i</div>
             <span>More Info</span>
           </button>
         </StyledBtns>
@@ -33,6 +33,7 @@ const Billboard = () => {
 const StyledBillboardContainer = styled.div`
   height: 100vh;
   width: 100%;
+  padding-bottom: 1rem;
   background-image: linear-gradient(
       77deg,
       rgba(0, 0, 0, 0.6) 0px,
@@ -43,6 +44,9 @@ const StyledBillboardContainer = styled.div`
   background-size: 100%;
   display: flex;
   align-items: center;
+  @media only screen and (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 const StyledLogoDesc = styled.div`
@@ -55,7 +59,7 @@ const StyledLogoDesc = styled.div`
 
 const StyledBillboardMovieLogo = styled.div`
   width: 100%;
-  height: 80px;
+  height: 75px;
   .title-logo {
     height: inherit;
     background-image: url(${transformers_logo});
@@ -67,60 +71,94 @@ const StyledBillboardMovieLogo = styled.div`
 const StyledDesc = styled.p`
   color: white;
   font-size: 1.3rem;
-  text-shadow: 1px 1px grey;
   padding-top: 1rem;
+  width: 100%;
 `;
 
 const StyledBtns = styled.div`
   margin-top: 2rem;
   display: flex;
-  width: fit-content;
+  width: 100%;
   .play-btn {
-    width: 120px;
-    padding: 0.7rem 1rem;
+    padding: 0.75rem 1.4rem;
     color: black;
     font-weight: 700;
-    font-size: 1.2rem;
     border: none;
     border-radius: 5px;
     background-color: white;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    height: fit-content;
     .play-icon {
       border-left: 5px solid transparent;
       border-right: 5px solid transparent;
       border-bottom: 10px solid black;
       transform: rotate(90deg) scale(2);
     }
+    span {
+      margin-left: 1rem;
+      font-size: 1.2rem;
+    }
     :hover {
       cursor: pointer;
     }
   }
   .info-btn {
-    margin-left: 1rem;
-    width: 160px;
-    padding: 0.7rem 1rem;
+    margin-left: 1.4rem;
+    padding: 0.7rem 1.3rem;
     color: white;
-    font-size: 1.2rem;
     border: none;
     border-radius: 5px;
-    background-color: rgba(109, 109, 110, 0.7);
     display: flex;
     align-items: center;
     justify-content: space-around;
+    height: fit-content;
+    background-color: rgba(109, 109, 110, 0.7);
     .info-icon {
       display: flex;
-      width: 27px;
-      height: 27px;
+      width: 20px;
+      height: 20px;
       border: 3px solid white;
       border-radius: 50%;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
+      padding-top: 2px;
+    }
+    span {
+      margin-left: 1rem;
+      font-size: 1.2rem;
     }
     :hover {
       cursor: pointer;
+    }
+  }
+  @media only screen and (max-width: 322px) {
+    .play-btn {
+      padding: 0.5rem 1rem;
+      .play-icon {
+        border-left: 2px solid transparent;
+        border-right: 2px solid transparent;
+        border-bottom: 4px solid black;
+      }
+      span {
+        font-size: 1rem;
+      }
+    }
+    .info-btn {
+      padding: 0.6rem 0.75rem;
+      .info-icon {
+        width: 10px;
+        height: 10px;
+        border: 1px solid white;
+        font-size: 0.8rem;
+        padding: 3px 0 2px 0;
+      }
+      span {
+        font-size: 0.75rem;
+        margin-left: 0.8rem;
+      }
     }
   }
 `;

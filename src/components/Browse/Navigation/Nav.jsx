@@ -61,6 +61,7 @@ const StyledLinks = styled.div`
     color: white;
     padding: 0.5rem 1rem;
     transition: color 250ms ease;
+    font-size: 1vw;
     :hover {
       color: #cdcdcd;
     }
@@ -84,7 +85,7 @@ const StyledCurrProfileImg = styled.div`
   width: 35px;
   border-radius: 5px;
   background: url("https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABTYctxxbe-UkKEdlMxXm4FVGD6DqTHkQ0TQ5CQJ9jbOMnG0CYxYcSICcTUQz8DrB7CpKUGpqJVMtEqksLlvSJx2ac3Ak.png?r=a41");
-  background-size: 35px 35px;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
 `;
 
