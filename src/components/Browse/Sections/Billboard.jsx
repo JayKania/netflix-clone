@@ -41,7 +41,8 @@ const StyledBillboardContainer = styled.div`
     ),
     url(${transformers_img});
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   @media only screen and (max-width: 1200px) {
@@ -102,6 +103,7 @@ const StyledBtns = styled.div`
     }
     :hover {
       cursor: pointer;
+      background-color: #ffffffd7;
     }
   }
   .info-btn {
@@ -132,6 +134,7 @@ const StyledBtns = styled.div`
     }
     :hover {
       cursor: pointer;
+      background-color: rgba(109, 109, 110, 0.5);
     }
   }
   @media only screen and (max-width: 322px) {

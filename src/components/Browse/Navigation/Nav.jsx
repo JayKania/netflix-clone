@@ -6,16 +6,38 @@ const Nav = () => {
   return (
     <StyledNav>
       <StyledLinks>
-        <StyledNavLogo href="/">
+        <StyledMobileMenu className="mobile-menu">
+          <img
+            src="https://assets.nflxext.com/ffe/siteui/akira/fallback/hamburger.gif"
+            alt="mobile-menu"
+          />
+        </StyledMobileMenu>
+
+        <StyledNavLogo href="/" className="nav-logo">
           <img src={navLogo} alt="" />
         </StyledNavLogo>
 
-        <a href="/browse">Home</a>
-        <a href="#">TV Shows</a>
-        <a href="#">Movies</a>
-        <a href="#">New & Popular</a>
-        <a href="#">My List</a>
+        <a href="/browse" className="nav-links">
+          Home
+        </a>
+        <a href="#" className="nav-links">
+          TV Shows
+        </a>
+        <a href="#" className="nav-links">
+          Movies
+        </a>
+        <a href="#" className="nav-links">
+          New & Popular
+        </a>
+        <a href="#" className="nav-links">
+          My List
+        </a>
       </StyledLinks>
+      <StyledSearchBar
+        type="text"
+        placeholder="Search"
+        className="search-bar"
+      />
       <StyledDropdown className="dropdown">
         <StyledCurrProfileImg className="curr-profile-img"></StyledCurrProfileImg>
         <StyledDropdownBtn className="dropdown-btn"> </StyledDropdownBtn>
@@ -52,6 +74,17 @@ const StyledNav = styled.nav`
     rgba(35, 35, 35, 1),
     rgba(35, 35, 35, 0)
   );
+
+  @media only screen and (max-width: 540px) {
+    background-color: black;
+    padding: 0rem 1.675rem;
+    height: 50px;
+  }
+  @media only screen and (min-width: 550px) and (max-width: 1115px) {
+    background-color: black;
+    padding: 0rem 2.5rem;
+    height: 50px;
+  }
 `;
 
 const StyledLinks = styled.div`
@@ -61,10 +94,36 @@ const StyledLinks = styled.div`
     color: white;
     padding: 0.5rem 1rem;
     transition: color 250ms ease;
-    font-size: 1vw;
+    font-size: 1rem;
     :hover {
       color: #cdcdcd;
     }
+  }
+
+  @media only screen and (max-width: 1115px) {
+    .nav-links {
+      display: none;
+    }
+    .nav-logo {
+      padding: 0;
+    }
+  }
+`;
+
+const StyledMobileMenu = styled.div`
+  width: 24px;
+  height: 24px;
+  margin: auto 0;
+  display: none;
+  img {
+    width: 100%;
+  }
+  :hover {
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: 1115px) {
+    display: block;
   }
 `;
 
@@ -75,18 +134,29 @@ const StyledNavLogo = styled.a`
     align-items: center;
     width: 100%;
   }
-  @media only screen and (max-width: 540px) {
-    width: 90px;
+
+  @media only screen and (max-width: 1115px) {
+    margin-left: 1.75rem;
+    width: 85px;
   }
 `;
 
-const StyledCurrProfileImg = styled.div`
-  height: 35px;
-  width: 35px;
-  border-radius: 5px;
-  background: url("https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABTYctxxbe-UkKEdlMxXm4FVGD6DqTHkQ0TQ5CQJ9jbOMnG0CYxYcSICcTUQz8DrB7CpKUGpqJVMtEqksLlvSJx2ac3Ak.png?r=a41");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+const StyledSearchBar = styled.input`
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  background-color: #1d1d1d;
+  width: 100px;
+  color: #ccc;
+  font-size: 1.2rem;
+  display: none;
+
+  @media only screen and (max-width: 540px) {
+    display: block;
+  }
+  @media only screen and (min-width: 550px) and (max-width: 1115px) {
+    display: block;
+    width: 180px;
+  }
 `;
 
 const StyledDropdown = styled.div`
@@ -106,6 +176,19 @@ const StyledDropdown = styled.div`
       opacity: 1;
     }
   }
+
+  @media only screen and (max-width: 1115px) {
+    display: none;
+  }
+`;
+
+const StyledCurrProfileImg = styled.div`
+  height: 35px;
+  width: 35px;
+  border-radius: 5px;
+  background: url("https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABTYctxxbe-UkKEdlMxXm4FVGD6DqTHkQ0TQ5CQJ9jbOMnG0CYxYcSICcTUQz8DrB7CpKUGpqJVMtEqksLlvSJx2ac3Ak.png?r=a41");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 `;
 
 const StyledDropdownBtn = styled.div`
