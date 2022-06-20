@@ -6,7 +6,7 @@ import { db } from "../../firebase/FirebseConfig";
 import Nav from "./Navigation/Nav";
 import Billboard from "./Sections/Billboard";
 
-const Browse = () => {
+const Browse = ({ yPosition }) => {
   const { logOut, user } = userStore((state) => ({
     logOut: state.logOut,
     user: state.user,
@@ -43,7 +43,7 @@ const Browse = () => {
 
   return (
     <>
-      <Nav />
+      <Nav yPosition={yPosition} />
       <Billboard></Billboard>
       <input
         type="button"

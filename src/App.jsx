@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Browse from "./components/Browse/Browse";
 import CheckUser from "./components/Browse/CheckUser";
@@ -7,6 +8,30 @@ import Profiles from "./components/Home/Profiles";
 import Login from "./components/Signin/Login";
 import Signup from "./components/Signup/Signup";
 const App = () => {
+  const [yPosition, setYPosition] = useState(1);
+  useEffect(() => {
+    // console.log(yScroll);
+
+    const controlNavBar = () => {
+      if (window !== undefined) {
+        if (window.scrollY === 0) {
+          setYPosition(0);
+        } else {
+          setYPosition(1);
+        }
+      }
+    };
+
+    if (window !== undefined) {
+      window.addEventListener("scroll", controlNavBar);
+    }
+
+    return () => {
+      // console.log("removed");
+      window.removeEventListener("scroll", controlNavBar);
+    };
+  }, [yPosition]);
+
   return (
     <div className="App">
       <Routes>
@@ -30,7 +55,7 @@ const App = () => {
           path="/browse"
           element={
             <RequireAuth>
-              <Browse />
+              <Browse yPosition={yPosition} />
             </RequireAuth>
           }
         />

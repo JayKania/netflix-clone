@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import navLogo from "../../../assets/Netflix-Logo.svg";
 
-const Nav = () => {
+const Nav = ({ yPosition }) => {
   return (
-    <StyledNav>
+    <StyledNav className={`${yPosition === 1 ? "not-transparent" : ""}`}>
       <StyledLinks>
         <StyledMobileMenu className="mobile-menu">
           <img
@@ -69,11 +69,16 @@ const StyledNav = styled.nav`
   justify-content: space-between;
   z-index: 1;
   position: fixed;
-  background: linear-gradient(
+  background-color: transparent;
+  background-image: linear-gradient(
     to bottom,
     rgba(35, 35, 35, 1),
     rgba(35, 35, 35, 0)
   );
+  transition: background-color 400ms ease;
+  &.not-transparent {
+    background-color: black;
+  }
 
   @media only screen and (max-width: 540px) {
     background-color: black;
