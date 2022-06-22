@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import userStore from "../../store/UserStore";
-import { setDoc, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { useEffect } from "react";
 import { db } from "../../firebase/FirebseConfig";
+import userStore from "../../store/UserStore";
 import Nav from "./Navigation/Nav";
 import Billboard from "./Sections/Billboard";
 
 const Browse = ({ yPosition }) => {
-  const { logOut, user } = userStore((state) => ({
-    logOut: state.logOut,
+  const { user } = userStore((state) => ({
     user: state.user,
   }));
 
@@ -45,13 +43,6 @@ const Browse = ({ yPosition }) => {
     <>
       <Nav yPosition={yPosition} />
       <Billboard></Billboard>
-      <input
-        type="button"
-        onClick={() => {
-          logOut();
-        }}
-        value="Sign out"
-      />
     </>
   );
 };

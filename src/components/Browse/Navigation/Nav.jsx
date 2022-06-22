@@ -1,62 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import navLogo from "../../../assets/Netflix-Logo.svg";
+import MobileMenu from "./MobileMenu";
 
 const Nav = ({ yPosition }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
   return (
-    <StyledNav className={`${yPosition === 1 ? "not-transparent" : ""}`}>
-      <StyledLinks>
-        <StyledMobileMenu className="mobile-menu">
-          <img
-            src="https://assets.nflxext.com/ffe/siteui/akira/fallback/hamburger.gif"
-            alt="mobile-menu"
-          />
-        </StyledMobileMenu>
+    <>
+      <StyledNav className={`${yPosition === 1 ? "not-transparent" : ""}`}>
+        <StyledLinks>
+          <StyledMobileMenu className="mobile-menu" onClick={toggleMenu}>
+            <img
+              src="https://assets.nflxext.com/ffe/siteui/akira/fallback/hamburger.gif"
+              alt="mobile-menu"
+            />
+          </StyledMobileMenu>
 
-        <StyledNavLogo href="/" className="nav-logo">
-          <img src={navLogo} alt="" />
-        </StyledNavLogo>
+          <StyledNavLogo href="/" className="nav-logo">
+            <img src={navLogo} alt="" />
+          </StyledNavLogo>
 
-        <a href="/browse" className="nav-links">
-          Home
-        </a>
-        <a href="#" className="nav-links">
-          TV Shows
-        </a>
-        <a href="#" className="nav-links">
-          Movies
-        </a>
-        <a href="#" className="nav-links">
-          New & Popular
-        </a>
-        <a href="#" className="nav-links">
-          My List
-        </a>
-      </StyledLinks>
-      <StyledSearchBar
-        type="text"
-        placeholder="Search"
-        className="search-bar"
-      />
-      <StyledDropdown className="dropdown">
-        <StyledCurrProfileImg className="curr-profile-img"></StyledCurrProfileImg>
-        <StyledDropdownBtn className="dropdown-btn"> </StyledDropdownBtn>
-        <StyledDropdownContent className="dropdown-content">
-          <StyledProfileLink>
-            <div className="profile-img"></div>
-            <a href="#">Profile 1</a>
-          </StyledProfileLink>
-          <StyledProfileLink>
-            <div className="profile-img"></div>
-            <a href="#">Profile 1</a>
-          </StyledProfileLink>
-          <StyledProfileLink>
-            <div className="profile-img"></div>
-            <a href="#">Profile 1</a>
-          </StyledProfileLink>
-        </StyledDropdownContent>
-      </StyledDropdown>
-    </StyledNav>
+          <a href="/browse" className="nav-links">
+            Home
+          </a>
+          <a href="#" className="nav-links">
+            TV Shows
+          </a>
+          <a href="#" className="nav-links">
+            Movies
+          </a>
+          <a href="#" className="nav-links">
+            New & Popular
+          </a>
+          <a href="#" className="nav-links">
+            My List
+          </a>
+        </StyledLinks>
+        <StyledSearchBar
+          type="text"
+          placeholder="Search"
+          className="search-bar"
+        />
+        <StyledDropdown className="dropdown">
+          <StyledCurrProfileImg className="curr-profile-img"></StyledCurrProfileImg>
+          <StyledDropdownBtn className="dropdown-btn"> </StyledDropdownBtn>
+          <StyledDropdownContent className="dropdown-content">
+            <StyledProfileLink>
+              <div className="profile-img"></div>
+              <a href="#">Profile 1</a>
+            </StyledProfileLink>
+            <StyledProfileLink>
+              <div className="profile-img"></div>
+              <a href="#">Profile 1</a>
+            </StyledProfileLink>
+            <StyledProfileLink>
+              <div className="profile-img"></div>
+              <a href="#">Profile 1</a>
+            </StyledProfileLink>
+          </StyledDropdownContent>
+        </StyledDropdown>
+      </StyledNav>
+      <MobileMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />
+    </>
   );
 };
 
@@ -67,7 +76,7 @@ const StyledNav = styled.nav`
   height: 68px;
   width: 100%;
   justify-content: space-between;
-  z-index: 1;
+  z-index: 2;
   position: fixed;
   background-color: transparent;
   background-image: linear-gradient(
