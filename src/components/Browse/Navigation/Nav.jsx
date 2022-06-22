@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import navLogo from "../../../assets/Netflix-Logo.svg";
+import userStore from "../../../store/UserStore";
 import MobileMenu from "./MobileMenu";
 
 const Nav = ({ yPosition }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const logOut = userStore((state) => state.logOut);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -51,15 +53,32 @@ const Nav = ({ yPosition }) => {
           <StyledDropdownContent className="dropdown-content">
             <StyledProfileLink>
               <div className="profile-img"></div>
-              <a href="#">Profile 1</a>
+              <a href="#">Profile Link</a>
             </StyledProfileLink>
             <StyledProfileLink>
               <div className="profile-img"></div>
-              <a href="#">Profile 1</a>
+              <a href="#">Profile Link</a>
             </StyledProfileLink>
             <StyledProfileLink>
               <div className="profile-img"></div>
-              <a href="#">Profile 1</a>
+              <a href="#">Profile Link</a>
+            </StyledProfileLink>
+            <StyledProfileLink>
+              <div className="manage-profile-icon"></div>
+              <a href="#">Manage Profiles</a>
+            </StyledProfileLink>
+            <div className="divider"></div>
+            <StyledProfileLink>
+              <a href="#">Account</a>
+            </StyledProfileLink>
+            <StyledProfileLink>
+              <a href="#">Help Center</a>
+            </StyledProfileLink>
+            <div className="divider"></div>
+            <StyledProfileLink>
+              <a href="#" onClick={logOut}>
+                Sign out of Netflix
+              </a>
             </StyledProfileLink>
           </StyledDropdownContent>
         </StyledDropdown>
@@ -84,7 +103,7 @@ const StyledNav = styled.nav`
     rgba(35, 35, 35, 1),
     rgba(35, 35, 35, 0)
   );
-  transition: background-color 400ms ease;
+  transition: background-color 350ms ease;
   &.not-transparent {
     background-color: black;
   }
@@ -187,6 +206,7 @@ const StyledDropdown = styled.div`
     .dropdown-content {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       opacity: 1;
     }
   }
@@ -217,28 +237,34 @@ const StyledDropdownBtn = styled.div`
 
 const StyledDropdownContent = styled.div`
   position: absolute;
-  width: max-content;
-  display: none;
+  background-color: rgba(0, 0, 0, 0.9);
+  /* below 3 properties are defined on hover of dropdown btn
+  display: flex;
   flex-direction: column;
+  justify-content: center; */
+  display: none;
+  top: 100%;
   right: 0;
-  bottom: -210%;
-  /* top: 40px; */
-  padding: 1rem;
-  background-color: #00000096;
+  min-width: 200px;
+  border-top: 1px solid white;
   opacity: 0;
-  transition: opacity 500ms ease;
-  border-top: 2px solid white;
-  :hover {
-    display: flex;
-    flex-direction: column;
+  transition: opacity 250ms ease;
+  .divider {
+    margin-top: 1.2rem;
+    border: 0.5px solid #ffffff39;
   }
 `;
 
 const StyledProfileLink = styled.div`
   margin-bottom: 1rem;
+  padding: 1rem 0 0 1rem;
   a {
     text-decoration: none;
     color: white;
+    font-size: 0.875rem;
+    :hover {
+      text-decoration: underline;
+    }
   }
 `;
 

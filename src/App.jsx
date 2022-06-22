@@ -8,10 +8,8 @@ import Profiles from "./components/Home/Profiles";
 import Login from "./components/Signin/Login";
 import Signup from "./components/Signup/Signup";
 const App = () => {
-  const [yPosition, setYPosition] = useState(1);
+  const [yPosition, setYPosition] = useState(0);
   useEffect(() => {
-    // console.log(yScroll);
-
     const controlNavBar = () => {
       if (window !== undefined) {
         if (window.scrollY === 0) {
