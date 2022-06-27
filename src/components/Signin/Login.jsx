@@ -24,10 +24,6 @@ const Login = () => {
 
   let from = location.state ? location.state.form : null;
 
-  useEffect(() => {
-    console.log("hello");
-  });
-
   const inputHandler = (event) => {
     if (event.target.id === "username") {
       setUserName(event.target.value);
