@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 import transformers_img from "../../../assets/transformers_img.png";
 import transformers_logo from "../../../assets/transformers_logo.png";
@@ -166,4 +166,4 @@ const StyledBtns = styled.div`
   }
 `;
 
-export default Billboard;
+export default memo(Billboard);
