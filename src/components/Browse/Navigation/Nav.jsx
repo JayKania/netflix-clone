@@ -95,7 +95,7 @@ const StyledNav = styled.nav`
   height: 68px;
   width: 100%;
   justify-content: space-between;
-  z-index: 2;
+  z-index: 3;
   position: fixed;
   background-color: transparent;
   background-image: linear-gradient(

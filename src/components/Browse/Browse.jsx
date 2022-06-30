@@ -69,7 +69,10 @@ const Browse = ({ yPosition }) => {
       );
 
       // console.log(moviesRes.data, showsRes.data);
-      setTrendingMoviesAndshows([moviesRes.data, showsRes.data]);
+      setTrendingMoviesAndshows([
+        moviesRes.data.results,
+        showsRes.data.results,
+      ]);
     };
 
     const getTopRatedMoviesAndTvShows = async () => {

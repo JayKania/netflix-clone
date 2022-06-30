@@ -48,7 +48,7 @@ const StyledOverlay = styled.div`
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
     display: block;
-    z-index: 0;
+    z-index: 2;
     &.hidden {
       display: none;
     }
@@ -61,7 +61,8 @@ const StyledOverlay = styled.div`
 const StyledMobileMenu = styled.div`
   display: none;
   @media only screen and (max-width: 1115px) {
-    z-index: 1;
+    z-index: 2;
+    position: absolute;
     width: 80%;
     max-width: 250px;
     height: 100vh;

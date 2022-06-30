@@ -8,7 +8,7 @@ import { Navigation } from "swiper";
 import "swiper/css/navigation";
 
 import styled from "styled-components";
-import { memo, useEffect } from "react";
+import { memo, useEffect, useState } from "react";
 
 const slides = {
   backgroundColor: "black",
@@ -20,25 +20,91 @@ const slides = {
   borderRadius: "7px",
 };
 
-const Slider = ({ trendingMovies, trendingShows }) => {
+const posters = {
+  height: "100%",
+  width: "100%",
+  objectFit: "cover",
+};
+
+const Slider = ({ title, data }) => {
   useEffect(() => {
-    console.log(trendingMovies);
-    console.log(trendingShows);
+    console.log(data);
   });
+
+  const [hover, setHover] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHover(false);
+  };
+
+  const slidesMarkup = data ? (
+    data.map((result) => {
+      return result.original_language === "en" ? (
+        <SwiperSlide
+          className="slides"
+          style={{
+            ...slides,
+            backgroundImage: `url(https://image.tmdb.org/t/p/w500/${result.backdrop_path})`,
+            backgroundSize: "cover",
+            backgroundPosition: "",
+            backgroundRepeat: "no-repeat",
+            // transform: hover ? "scale(2)" : "",
+            cursor: hover ? "pointer" : "",
+          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          key={result.id}
+        >
+          {/* {result.original_name
+              ? result.original_name
+              : result.original_title} */}
+          {/* <img
+              style={posters}
+              src={`https://image.tmdb.org/t/p/original/${result.poster_path}`}
+              alt="show/movie poster"
+            /> */}
+        </SwiperSlide>
+      ) : null;
+    })
+  ) : (
+    <SwiperSlide className="slides" style={slides}></SwiperSlide>
+  );
+
   return (
     <StyledSwiperContainer className="swiper-container">
+      <h2 style={{ color: "white" }}>{title}</h2>
+
       <Swiper
         modules={[Navigation]}
+        slidesPreView={6}
         spaceBetween={4}
-        slidesPerView={6}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
         navigation={{
           prevEl: ".swiper-button-prev",
           nextEl: ".swiper-button-next",
         }}
+        breakpoints={{
+          320: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+            navigation: { enabled: false, nextEl: "", prevEl: "" },
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 10,
+            navigation: { enabled: false, nextEl: "", prevEl: "" },
+          },
+          1115: {
+            spaceBetween: 4,
+            slidesPreView: 6,
+            navigation: { enabled: false, nextEl: "", prevEl: "" },
+          },
+        }}
       >
-        <SwiperSlide className="slides" style={slides}>
+        {/* <SwiperSlide className="slides" style={slides}>
           Slide 1
         </SwiperSlide>
         <SwiperSlide className="slides" style={slides}>
@@ -58,8 +124,8 @@ const Slider = ({ trendingMovies, trendingShows }) => {
         </SwiperSlide>
         <SwiperSlide className="slides" style={slides}>
           Slide 7
-        </SwiperSlide>
-
+        </SwiperSlide> */}
+        {slidesMarkup}
         <StyledButtons className="swiper-button-prev"></StyledButtons>
         <StyledButtons className="swiper-button-next"></StyledButtons>
       </Swiper>
@@ -70,20 +136,23 @@ const Slider = ({ trendingMovies, trendingShows }) => {
 const StyledButtons = styled.div`
   --swiper-navigation-size: 25px;
   --swiper-theme-color: white;
+  @media only screen and (max-width: 1115px) {
+    display: none;
+  }
 `;
 
 const StyledSwiperContainer = styled.div`
-  padding: 0 1rem;
-  background-color: #141414;
+  padding: 2rem 1rem;
 `;
 
-const StyledSlides = styled(SwiperSlide)`
+const StyledSwiperSlide = styled(SwiperSlide)`
   background-color: black;
   color: white;
-  height: 200px;
+  height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 7px;
 `;
 
 export default memo(Slider);
