@@ -7,8 +7,8 @@ import "swiper/css";
 import { Navigation } from "swiper";
 import "swiper/css/navigation";
 
+import { memo, useState } from "react";
 import styled from "styled-components";
-import { memo, useEffect, useState } from "react";
 
 const slides = {
   backgroundColor: "black",
@@ -20,17 +20,7 @@ const slides = {
   borderRadius: "7px",
 };
 
-const posters = {
-  height: "100%",
-  width: "100%",
-  objectFit: "cover",
-};
-
 const Slider = ({ title, data }) => {
-  useEffect(() => {
-    console.log(data);
-  });
-
   const [hover, setHover] = useState(false);
 
   const handleMouseEnter = () => {
@@ -43,88 +33,78 @@ const Slider = ({ title, data }) => {
 
   const slidesMarkup = data ? (
     data.map((result) => {
-      return result.original_language === "en" ? (
+      // return result.original_language === "en" ? (
+      // ) : null;
+      return (
         <SwiperSlide
           className="slides"
           style={{
             ...slides,
-            backgroundImage: `url(https://image.tmdb.org/t/p/w500/${result.backdrop_path})`,
+            backgroundImage: `url(https://image.tmdb.org/t/p/w500/${
+              result.backdrop_path ? result.backdrop_path : result.poster_path
+            })`,
             backgroundSize: "cover",
-            backgroundPosition: "",
+            backgroundPosition: "bottom",
             backgroundRepeat: "no-repeat",
-            // transform: hover ? "scale(2)" : "",
             cursor: hover ? "pointer" : "",
           }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           key={result.id}
-        >
-          {/* {result.original_name
-              ? result.original_name
-              : result.original_title} */}
-          {/* <img
-              style={posters}
-              src={`https://image.tmdb.org/t/p/original/${result.poster_path}`}
-              alt="show/movie poster"
-            /> */}
-        </SwiperSlide>
-      ) : null;
+        ></SwiperSlide>
+      );
     })
   ) : (
-    <SwiperSlide className="slides" style={slides}></SwiperSlide>
+    <>
+      {/* templates */}
+      <SwiperSlide className="slides" style={slides}></SwiperSlide>
+      <SwiperSlide className="slides" style={slides}></SwiperSlide>
+      <SwiperSlide className="slides" style={slides}></SwiperSlide>
+      <SwiperSlide className="slides" style={slides}></SwiperSlide>
+      <SwiperSlide className="slides" style={slides}></SwiperSlide>
+      <SwiperSlide className="slides" style={slides}></SwiperSlide>
+    </>
   );
 
   return (
     <StyledSwiperContainer className="swiper-container">
-      <h2 style={{ color: "white" }}>{title}</h2>
+      <StyledHeading className="category">{title}</StyledHeading>
 
       <Swiper
         modules={[Navigation]}
-        slidesPreView={6}
+        slidesPerView={6}
         spaceBetween={4}
         navigation={{
           prevEl: ".swiper-button-prev",
           nextEl: ".swiper-button-next",
         }}
+        loop={true}
         breakpoints={{
           320: {
             slidesPerView: 2,
-            spaceBetween: 10,
+            spaceBetween: 5,
+            navigation: { enabled: false, nextEl: "", prevEl: "" },
+          },
+          600: {
+            slidesPerView: 3,
+            spaceBetween: 5,
             navigation: { enabled: false, nextEl: "", prevEl: "" },
           },
           768: {
             slidesPerView: 4,
-            spaceBetween: 10,
+            spaceBetween: 5,
             navigation: { enabled: false, nextEl: "", prevEl: "" },
           },
           1115: {
-            spaceBetween: 4,
-            slidesPreView: 6,
-            navigation: { enabled: false, nextEl: "", prevEl: "" },
+            slidesPerView: 6,
+            spaceBetween: 10,
+            navigation: {
+              prevEl: ".swiper-button-prev",
+              nextEl: ".swiper-button-next",
+            },
           },
         }}
       >
-        {/* <SwiperSlide className="slides" style={slides}>
-          Slide 1
-        </SwiperSlide>
-        <SwiperSlide className="slides" style={slides}>
-          Slide 2
-        </SwiperSlide>
-        <SwiperSlide className="slides" style={slides}>
-          Slide 3
-        </SwiperSlide>
-        <SwiperSlide className="slides" style={slides}>
-          Slide 4
-        </SwiperSlide>
-        <SwiperSlide className="slides" style={slides}>
-          Slide 5
-        </SwiperSlide>
-        <SwiperSlide className="slides" style={slides}>
-          Slide 6
-        </SwiperSlide>
-        <SwiperSlide className="slides" style={slides}>
-          Slide 7
-        </SwiperSlide> */}
         {slidesMarkup}
         <StyledButtons className="swiper-button-prev"></StyledButtons>
         <StyledButtons className="swiper-button-next"></StyledButtons>
@@ -145,14 +125,18 @@ const StyledSwiperContainer = styled.div`
   padding: 2rem 1rem;
 `;
 
-const StyledSwiperSlide = styled(SwiperSlide)`
-  background-color: black;
-  color: white;
-  height: 130px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 7px;
+const StyledHeading = styled.h2`
+  color: grey;
+  margin-bottom: 10px;
+  @media only screen and (max-width: 320px) {
+    font-size: 1.5rem;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 540px) {
+    font-size: 1.75rem;
+  }
+  @media only screen and (min-width: 550px) and (max-width: 1115px) {
+    font-size: 1.85rem;
+  }
 `;
 
 export default memo(Slider);

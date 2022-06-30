@@ -12,7 +12,9 @@ const Browse = ({ yPosition }) => {
     user: state.user,
   }));
 
+  const [popularMoviesAndShows, setPopularMoviesAndshows] = useState([]);
   const [trendingMoviesAndShows, setTrendingMoviesAndshows] = useState([]);
+  const [topRatedMoviesAndShows, setTopRatedMoviesAndshows] = useState([]);
 
   const api_key = process.env.REACT_APP_TMDB_API_KEY;
 
@@ -55,6 +57,8 @@ const Browse = ({ yPosition }) => {
       const showRes = await axios.get(
         `https://api.themoviedb.org/3/tv/popular?api_key=${api_key}&language=en-US&page=1`
       );
+
+      setPopularMoviesAndshows([movieRes.data.results, showRes.data.results]);
     };
 
     const getTrendingMoviesAndTvShows = async () => {
@@ -85,6 +89,8 @@ const Browse = ({ yPosition }) => {
       const showRes = await axios.get(
         `https://api.themoviedb.org/3/tv/top_rated?api_key=${api_key}&language=en-US&page=1`
       );
+
+      setTopRatedMoviesAndshows([movieRes.data.results, showRes.data.results]);
     };
     checkUserExistInDatabase();
   }, [user]);
@@ -94,11 +100,23 @@ const Browse = ({ yPosition }) => {
       <Nav yPosition={yPosition} />
       <Billboard></Billboard>
       <MoviesAndShowsLists
+        popularMovies={
+          popularMoviesAndShows.length !== 0 ? popularMoviesAndShows[0] : null
+        }
+        popularShows={
+          popularMoviesAndShows.length !== 0 ? popularMoviesAndShows[1] : null
+        }
         trendingMovies={
           trendingMoviesAndShows.length !== 0 ? trendingMoviesAndShows[0] : null
         }
         trendingShows={
           trendingMoviesAndShows.length !== 0 ? trendingMoviesAndShows[1] : null
+        }
+        topRatedMovies={
+          topRatedMoviesAndShows.length !== 0 ? topRatedMoviesAndShows[0] : null
+        }
+        topRatedShows={
+          topRatedMoviesAndShows.length !== 0 ? topRatedMoviesAndShows[1] : null
         }
       ></MoviesAndShowsLists>
     </>

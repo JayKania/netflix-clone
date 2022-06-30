@@ -41,7 +41,7 @@ const StyledOverlay = styled.div`
   display: none;
 
   @media only screen and (max-width: 1115px) {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -62,10 +62,12 @@ const StyledMobileMenu = styled.div`
   display: none;
   @media only screen and (max-width: 1115px) {
     z-index: 2;
-    position: absolute;
+    position: fixed;
     width: 80%;
     max-width: 250px;
-    height: 100vh;
+    height: 100%;
+    top: 0;
+    bottom: 0;
     background-color: black;
     transform: translateX(0);
     transition: transform 300ms ease;
