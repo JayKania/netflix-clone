@@ -29,10 +29,10 @@ const Profiles = () => {
   const profileHtml = React.Children.toArray(
     profiles.map((profile) => {
       return (
-        <div className="profile-wrapper">
+        <a className="profile-wrapper" href="/browse">
           <div className={`profile ${profile.color}`}></div>
           <p className="profile-name">{profile.name}</p>
-        </div>
+        </a>
       );
     })
   );
@@ -99,6 +99,7 @@ const StyledProfileContainer = styled.div`
     flex-wrap: wrap;
     .profile-wrapper {
       margin: 1rem;
+      text-decoration: none;
       &:hover {
         cursor: pointer;
         .profile {

@@ -1,0 +1,18 @@
+.slides {
+  background-color: black;
+  height: 130px;
+  color: white;
+  border-radius: 2px;
+  transition: transform 250ms ease;
+}
+
+.slides:hover {
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 1200px) {
+  .slides:hover {
+    transform: scale(150%);
+    z-index: 2;
+  }
+}

@@ -4,7 +4,7 @@ import Browse from "./components/Browse/Browse";
 import CheckUser from "./components/Browse/CheckUser";
 import RequireAuth from "./components/Browse/RequireAuth";
 import Home from "./components/Home/Home";
-import Profiles from "./components/Home/Profiles";
+import Profiles from "./components/Profiles/Profiles";
 import Login from "./components/Signin/Login";
 import Signup from "./components/Signup/Signup";
 const App = () => {

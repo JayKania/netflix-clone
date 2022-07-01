@@ -15,6 +15,7 @@ const Browse = ({ yPosition }) => {
   const [popularMoviesAndShows, setPopularMoviesAndshows] = useState([]);
   const [trendingMoviesAndShows, setTrendingMoviesAndshows] = useState([]);
   const [topRatedMoviesAndShows, setTopRatedMoviesAndshows] = useState([]);
+  const [upcomingMovies, setUpcomingMovies] = useState(null);
 
   const api_key = process.env.REACT_APP_TMDB_API_KEY;
 
@@ -36,6 +37,7 @@ const Browse = ({ yPosition }) => {
         getPopularMoviesAndTvShows();
         getTrendingMoviesAndTvShows();
         getTopRatedMoviesAndTvShows();
+        getUpcomingMovies();
       }
     };
 
@@ -92,6 +94,15 @@ const Browse = ({ yPosition }) => {
 
       setTopRatedMoviesAndshows([movieRes.data.results, showRes.data.results]);
     };
+
+    const getUpcomingMovies = async () => {
+      // getting upcoming movies
+      const movieRes = await axios.get(
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=${api_key}&language=en-US&page=1`
+      );
+
+      setUpcomingMovies(movieRes.data.results);
+    };
     checkUserExistInDatabase();
   }, [user]);
 
@@ -118,6 +129,7 @@ const Browse = ({ yPosition }) => {
         topRatedShows={
           topRatedMoviesAndShows.length !== 0 ? topRatedMoviesAndShows[1] : null
         }
+        upcomingMovies={upcomingMovies}
       ></MoviesAndShowsLists>
     </>
   );

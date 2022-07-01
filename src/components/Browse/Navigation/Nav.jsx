@@ -65,7 +65,7 @@ const Nav = ({ yPosition }) => {
             </StyledProfileLink>
             <StyledProfileLink>
               <div className="manage-profile-icon"></div>
-              <a href="#">Manage Profiles</a>
+              <a href="/profiles">Manage Profiles</a>
             </StyledProfileLink>
             <div className="divider"></div>
             <StyledProfileLink>

@@ -1,3 +1,5 @@
+import React from "react";
+
 //  Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -10,15 +12,7 @@ import "swiper/css/navigation";
 import { memo, useState } from "react";
 import styled from "styled-components";
 
-const slides = {
-  backgroundColor: "black",
-  color: "white",
-  height: "130px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  borderRadius: "7px",
-};
+import "./slider.css";
 
 const Slider = ({ title, data }) => {
   const [hover, setHover] = useState(false);
@@ -32,37 +26,34 @@ const Slider = ({ title, data }) => {
   };
 
   const slidesMarkup = data ? (
-    data.map((result) => {
-      // return result.original_language === "en" ? (
-      // ) : null;
-      return (
-        <SwiperSlide
-          className="slides"
-          style={{
-            ...slides,
-            backgroundImage: `url(https://image.tmdb.org/t/p/w500/${
-              result.backdrop_path ? result.backdrop_path : result.poster_path
-            })`,
-            backgroundSize: "cover",
-            backgroundPosition: "bottom",
-            backgroundRepeat: "no-repeat",
-            cursor: hover ? "pointer" : "",
-          }}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          key={result.id}
-        ></SwiperSlide>
-      );
-    })
+    React.Children.toArray(
+      data.map((result) => {
+        // return result.original_language === "en" ? (
+        // ) : null;
+        return (
+          <SwiperSlide
+            className="slides loadingAnimation"
+            style={{
+              backgroundImage: `url(https://image.tmdb.org/t/p/original/${
+                result.backdrop_path ? result.backdrop_path : result.poster_path
+              })`,
+              backgroundSize: "cover",
+              backgroundPosition: "bottom",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></SwiperSlide>
+        );
+      })
+    )
   ) : (
     <>
       {/* templates */}
-      <SwiperSlide className="slides" style={slides}></SwiperSlide>
-      <SwiperSlide className="slides" style={slides}></SwiperSlide>
-      <SwiperSlide className="slides" style={slides}></SwiperSlide>
-      <SwiperSlide className="slides" style={slides}></SwiperSlide>
-      <SwiperSlide className="slides" style={slides}></SwiperSlide>
-      <SwiperSlide className="slides" style={slides}></SwiperSlide>
+      <SwiperSlide className="slides"></SwiperSlide>
+      <SwiperSlide className="slides"></SwiperSlide>
+      <SwiperSlide className="slides"></SwiperSlide>
+      <SwiperSlide className="slides"></SwiperSlide>
+      <SwiperSlide className="slides"></SwiperSlide>
+      <SwiperSlide className="slides"></SwiperSlide>
     </>
   );
 
@@ -71,6 +62,7 @@ const Slider = ({ title, data }) => {
       <StyledHeading className="category">{title}</StyledHeading>
 
       <Swiper
+        style={{ overflow: "visible", maxWidth: "100vw" }}
         modules={[Navigation]}
         slidesPerView={6}
         spaceBetween={4}
@@ -97,7 +89,7 @@ const Slider = ({ title, data }) => {
           },
           1115: {
             slidesPerView: 6,
-            spaceBetween: 10,
+            spaceBetween: 5,
             navigation: {
               prevEl: ".swiper-button-prev",
               nextEl: ".swiper-button-next",
