@@ -8,6 +8,15 @@ const Nav = ({ yPosition }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const logOut = userStore((state) => state.logOut);
 
+  const yellowProfile =
+    "https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABWu33TcylnaLZwSdtgKR6mr0O63afqQLxZbzHYQZLkCJ9bgMTtsf6tzs_ua2BuTpAVPbhxnroiEA-_bqJmKWiXblO9h-.png?r=f71";
+  const redProfile =
+    "https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABeUqbfriC_pGWtwTa1KOx-ZSiQYa7ltLkOuduGxY_GRRc41ugYJNGYHe4LNcmshST4qkRSENvcs2xFomPc0rtX8wq2NG.png?r=b97";
+  const greyProfile =
+    "https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABX_cjFqekMWlVv9AS6vI54p7W5uxkdnDz0RZ_BWg2XRBOMNYXnJRhtOnpMappsaT2-4TP8mjyaBTNLX-mLEJHl8GIfn_.png?r=fcc";
+  const kidsProfile =
+    "https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABaUPoBCVB1RRbB3EfRHmR0B--jKWw5PtSZJG0K6KlbQwBvJPKU8mI-SSMWepaLtGsiR9SQnE92jjKFidoUpPQq-hGhE1.png?r=5cf";
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -52,16 +61,36 @@ const Nav = ({ yPosition }) => {
           <StyledDropdownBtn className="dropdown-btn"> </StyledDropdownBtn>
           <StyledDropdownContent className="dropdown-content">
             <StyledProfileLink>
-              <div className="profile-img"></div>
-              <a href="#">Profile Link</a>
+              <div className="profile-img">
+                <img src={yellowProfile} alt="profile_img" />
+              </div>
+              <a href="#" className="profile-link">
+                Profile Link
+              </a>
             </StyledProfileLink>
             <StyledProfileLink>
-              <div className="profile-img"></div>
-              <a href="#">Profile Link</a>
+              <div className="profile-img">
+                <img src={redProfile} alt="profile_img" />
+              </div>
+              <a href="#" className="profile-link">
+                Profile Link
+              </a>
             </StyledProfileLink>
             <StyledProfileLink>
-              <div className="profile-img"></div>
-              <a href="#">Profile Link</a>
+              <div className="profile-img">
+                <img src={greyProfile} alt="profile_img" />
+              </div>
+              <a href="#" className="profile-link">
+                Profile Link
+              </a>
+            </StyledProfileLink>
+            <StyledProfileLink>
+              <div className="profile-img">
+                <img src={kidsProfile} alt="profile_img" />
+              </div>
+              <a href="#" className="profile-link">
+                Profile Link
+              </a>
             </StyledProfileLink>
             <StyledProfileLink>
               <div className="manage-profile-icon"></div>
@@ -258,6 +287,19 @@ const StyledDropdownContent = styled.div`
 const StyledProfileLink = styled.div`
   margin-bottom: 1rem;
   padding: 1rem 0 0 1rem;
+  display: flex;
+  align-items: center;
+  .profile-img {
+    width: 30px;
+    img {
+      border-radius: 5px;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .profile-link {
+    margin-left: 1rem;
+  }
   a {
     text-decoration: none;
     color: white;
