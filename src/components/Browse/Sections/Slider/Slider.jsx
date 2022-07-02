@@ -1,4 +1,3 @@
-import React from "react";
 import { v4 as uuid4 } from "uuid";
 
 //  Import Swiper React components
@@ -10,14 +9,12 @@ import "swiper/css";
 import { Navigation } from "swiper";
 import "swiper/css/navigation";
 
-import { memo, useState } from "react";
+import { memo } from "react";
 import styled from "styled-components";
 
 import "./slider.css";
 
 const Slider = ({ title, data }) => {
-  console.log(data);
-
   const slidesMarkup = data ? (
     data.map((result) => {
       // return result.original_language === "en" ? (
