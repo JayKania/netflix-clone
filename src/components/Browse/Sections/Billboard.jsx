@@ -45,6 +45,7 @@ const StyledBillboardContainer = styled.div`
   background-position: center;
   display: flex;
   align-items: center;
+  z-index: 2;
   @media only screen and (max-width: 1200px) {
     display: none;
   }

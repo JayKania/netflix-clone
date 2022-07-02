@@ -30,6 +30,8 @@ const MoviesAndShowsLists = ({
 const StyledMoviesAndShowsLists = styled.div`
   background-color: #141414;
   overflow-x: hidden;
+  z-index: 5;
+  padding: 3.5rem 0 2rem 0;
   @media only screen and (max-width: 1115px) {
     padding-top: 45px;
   }

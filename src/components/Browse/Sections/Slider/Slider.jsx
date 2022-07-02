@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuid4 } from "uuid";
 
 //  Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,36 +16,62 @@ import styled from "styled-components";
 import "./slider.css";
 
 const Slider = ({ title, data }) => {
-  const [hover, setHover] = useState(false);
-
-  const handleMouseEnter = () => {
-    setHover(true);
-  };
-
-  const handleMouseLeave = () => {
-    setHover(false);
-  };
+  console.log(data);
 
   const slidesMarkup = data ? (
-    React.Children.toArray(
-      data.map((result) => {
-        // return result.original_language === "en" ? (
-        // ) : null;
-        return (
-          <SwiperSlide
-            className="slides loadingAnimation"
-            style={{
-              backgroundImage: `url(https://image.tmdb.org/t/p/original/${
-                result.backdrop_path ? result.backdrop_path : result.poster_path
-              })`,
-              backgroundSize: "cover",
-              backgroundPosition: "bottom",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></SwiperSlide>
-        );
-      })
-    )
+    data.map((result) => {
+      // return result.original_language === "en" ? (
+      // ) : null;
+      const id = uuid4();
+      return (
+        <div>
+          <SwiperSlide className="slides">
+            <div className="card">
+              <div className="poster">
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${
+                    result.backdrop_path
+                      ? result.backdrop_path
+                      : result.poster_path
+                  }`}
+                  alt="movie/tv img"
+                />
+              </div>
+              <div className="details-card">
+                <div className="btns">
+                  <div className="btn-grp">
+                    <div className="btn">
+                      <i class="fal fa-duotone fa-play"></i>
+                    </div>
+                    <div className="btn">
+                      <i class="fal fa-thin fa-plus"></i>
+                    </div>
+                    <div className="btn">
+                      <i class="fal fa-thin fa-thumbs-up"></i>
+                    </div>
+                  </div>
+                  <div className="btn-grp">
+                    <div className="btn">
+                      <i class="fal fa-thin fa-angle-down"></i>
+                    </div>
+                  </div>
+                </div>
+                <div className="details">
+                  <h6 className="title">
+                    {result.title
+                      ? result.title
+                      : result.original_language !== "en"
+                      ? result.name
+                      : result.original_name}
+                  </h6>
+                  <span className="match">96% Match</span>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        </div>
+      );
+    })
   ) : (
     <>
       {/* templates */}
@@ -115,6 +142,7 @@ const StyledButtons = styled.div`
 
 const StyledSwiperContainer = styled.div`
   padding: 2rem 1rem;
+  z-index: 5;
 `;
 
 const StyledHeading = styled.h2`

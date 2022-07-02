@@ -4,15 +4,94 @@
   color: white;
   border-radius: 2px;
   transition: transform 250ms ease;
+  /* transform: scale(140%) translateY(-50%); */
 }
 
 .slides:hover {
   cursor: pointer;
 }
 
-@media only screen and (min-width: 1200px) {
+.slides .details-card {
+  display: none;
+}
+
+.card {
+  height: 130px;
+}
+
+.card .poster {
+  height: 100%;
+  width: 100%;
+}
+
+.poster img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.details-card {
+  position: absolute;
+  bottom: 0;
+  top: 100%;
+  height: fit-content;
+  width: 100%;
+  background-color: #141414;
+  padding: 1rem 0.5rem;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 20px rgb(0, 0, 0);
+}
+
+.details-card:hover {
+  cursor: default;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-grp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  border: 1px solid grey;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.details {
+  margin-top: 0.5rem;
+}
+.details .title {
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.details .match {
+  color: rgb(3, 218, 3);
+  font-size: 0.8rem;
+}
+
+@media only screen and (min-width: 1030px) {
   .slides:hover {
-    transform: scale(150%);
+    transform: scale(140%) translateY(-52%);
     z-index: 2;
+    box-shadow: 0px 2px 20px rgb(0, 0, 0);
+  }
+  .slides:hover .details-card {
+    display: block;
   }
 }
